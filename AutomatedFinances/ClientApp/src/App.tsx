@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Layout from './components/Navigation/Layout';
 import { Home } from './components/Home';
-import { CareerhubData } from './components/CareerhubData';
-import { Counter } from './components/Counter';
+import CareerhubData from './components/CareerHub/CareerhubData';
+
 import {
   HTTPCode400,
   HTTPCode401,
@@ -25,20 +26,20 @@ export default class App extends Component {
 
         {/* Excellent answer on rendering a / route */}
         {/* https://stackoverflow.com/a/44292410/9505707 */}
-        <Layout />
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/counter' component={Counter} />
-          <Route path='/careerhubData' component={CareerhubData} />
-          {/*  Error routes */}
-          <Route path='/error400' component={HTTPCode400} />
-          <Route path='/error401' component={HTTPCode401} />
-          <Route path='/error403' component={HTTPCode403} />
-          <Route path='/error404' component={HTTPCode404} />
-          <Route path='/error500' component={HTTPCode500} />
-          {/* Default route on no other route found. */}
-          <Route component={HTTPCode400} />
-        </Switch>
+        <Layout>
+            <Switch>
+                <Route exact path='/' component={Home} />
+                <Route path='/utsCareerHub' component={CareerhubData} />
+                {/*  Error routes */}
+                <Route path='/error400' component={HTTPCode400} />
+                <Route path='/error401' component={HTTPCode401} />
+                <Route path='/error403' component={HTTPCode403} />
+                <Route path='/error404' component={HTTPCode404} />
+                <Route path='/error500' component={HTTPCode500} />
+                {/* Default route on no other route found. */}
+                <Route component={HTTPCode404} />
+                </Switch>
+            </Layout>
       </div>
     );
   }

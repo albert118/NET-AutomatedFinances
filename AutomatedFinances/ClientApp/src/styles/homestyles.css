@@ -1,0 +1,13 @@
+@import "monochromaticbluepalette.css"; /* colour root variables. */
+@import "contrastpalette.css";          /* high contrast and highlighting options. */
+
+:root {
+    --max-wrapper-width: 1270px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--cultured, white);
+  color: black;
+}

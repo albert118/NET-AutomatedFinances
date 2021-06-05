@@ -1,26 +1,89 @@
-import React, { Component } from 'react';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import BetterLink from './CommonStyledComponents/BetterLink';
+import Wrapper from './CommonStyledComponents/Wrapper';
 
-export class Home extends Component {
-  static displayName = Home.name;
+import "../styles/homestyles.css";
 
-  render () {
+function Arrow(props) {
+    const StyledArrow = styled.span`
+        height: ${props.Size ? props.Size: "6px"};
+        margin-left: 0.32em;
+        position: relative;
+        display: inline-block;
+        flex: none;
+        color: inherit;
+    `;
+
     return (
-      <div>
-        <h1>Hello, world!</h1>
-        <p>Welcome to your new single-page application, built with:</p>
-        <ul>
-          <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-          <li><a href='https://facebook.github.io/react/'>React</a> for client-side code</li>
-          <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
-        </ul>
-        <p>To help you get started, we have also set up:</p>
-        <ul>
-          <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-          <li><strong>Development server integration</strong>. In development mode, the development server from <code>create-react-app</code> runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-          <li><strong>Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration produces minified, efficiently bundled JavaScript files.</li>
-        </ul>
-        <p>The <code>ClientApp</code> subdirectory is a standard React application based on the <code>create-react-app</code> template. If you open a command prompt in that directory, you can run <code>npm</code> commands such as <code>npm test</code> or <code>npm install</code>.</p>
-      </div>
+        <StyledArrow>
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 14 14" 
+                display="block"
+                height="100%"
+                aria-hidden="true"
+            >
+                <path
+                    d="M7 1.167L12.833 7 7 12.833M12.25 7H1.167"
+                    fill="transparent"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke">
+                </path>
+            </svg>
+        </StyledArrow>
+    )
+}
+
+export function Home() {
+    const HeroContainer = styled.div`
+        padding-top: 8rem; 
+        padding-bottom: 4rem;
+        margin-bottom: 4rem;  
+    `;
+
+    const GridContainer = styled.div`
+        position: relative;
+        display: grid;
+        grid-auto-columns: auto;
+        grid-auto-rows: auto;
+        row-gap: 16px
+    `;
+
+    const StyledHeader = styled.h1`
+        color: black;
+        font-weight: 600;
+        letter-spacing: -.046em;
+        line-height: 1.08;
+        font-size: 4rem;
+    `;
+
+    const _fontSize = "22px";
+    const _arrowSize = "12px";
+
+    return (
+        <Wrapper>
+            <HeroContainer> 
+                <GridContainer>
+                    <StyledHeader>Auto Finances</StyledHeader>
+                    <h3 >A supped up API with an SPA for your convenience.</h3>
+                    <GridContainer>
+                        <p>
+                            <BetterLink Link='' LinkText='Read the docs' FontSize={_fontSize} />
+                            <Arrow Size={_arrowSize}/>
+                            <BetterLink Link='' LinkText='Checkout the GitHub' FontSize={_fontSize}/>
+                            <Arrow Size={_arrowSize}/>
+                            <BetterLink Link='' LinkText='Read the docs' FontSize={_fontSize} />
+                            <Arrow Size={_arrowSize}/>
+                        </p>
+                    </GridContainer>
+                </GridContainer>
+            </HeroContainer>
+            {/* for demo only */}
+            <br /><br /><br /><br /><br /><br /><br /><br /><br />
+        </Wrapper>
     );
-  }
 }

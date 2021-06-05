@@ -1,4 +1,12 @@
-﻿a.navbar-brand {
+﻿
+div {
+  --navigation-noclick-color: rgb(224, 224, 224);
+  --navigation-onclick-color: #67e1f4ff;
+  --navigation-gap: 12px;
+  --navigation-heigh: 92px;
+}
+
+a.navbar-brand {
   white-space: normal;
   text-align: center;
   word-break: break-all;

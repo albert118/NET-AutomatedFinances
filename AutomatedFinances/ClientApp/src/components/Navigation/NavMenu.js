@@ -1,62 +1,149 @@
-import React, { Component, useState, useEffect } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, Button} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import './NavMenu.css';
+import React, { useState } from 'react';
+import { Button} from 'reactstrap';
 import styled from 'styled-components'
+import BetterLink from '../CommonStyledComponents/BetterLink';
 
-const StyledNavbar = styled.nav``;
+import '../../styles/NavMenu.css';
 
-const StyledLink = styled.li``;
 
-const StyledButton = styled(Button)`
-    /* A button that changes based on props! */
-    background: ${props => props.primary ? "palevioletred" : "white"};
-    background: ${props => props.isHovered ? "palered" : ""};
-    colour: ${props => props.primary ? "white" : "palevioletred"};
-    display: inline-block;
+function NavbarBrand(props) {
+    const StyledNavbarbrand = styled.div`
+        display: inline-flex;        
+        width: auto;        
+        height: 100%;
+        flex: none;
+        padding: 0;
+        place-content: center;
+        place-items: center;
+    `;
 
-    font-size: 1em;
-    margin: 1em;
-    padding: 0.25em 1em;
-    border: 2px solid palevioletred;
-    border-radius: 3px;
-`;
+    const StyledLogo = styled.svg`
+        width: 14px;
+        heigh: 21px;
+        margin-right: 12px;
+        vertical-align: middle;
+    `;
 
-function BetterNavLinks(props) {
-    const [isHovered, setHovered] = useState(false);
+    const StyledLogoWord = styled.span`
+        text-decoration: none;
+        color: var(--sky-blue-crayola, white) !important;
+        font-size: 0.8rem;
+        font-weight: 650;
+    `;
 
+    // prop: Link should redirect to Home
+    // prop: brandText the brand text
     return (
-        <NavItem>
-            <Button outline>
-                <NavLink tag={Link} className="text-dark" to={String(props.Path)}>{String(props.Name)}</NavLink>
-            </Button>
-        </NavItem>
-    );
+        <StyledNavbarbrand>
+            <StyledLogo />
+            <StyledLogoWord>
+                <BetterLink Link="/" LinkText={props.brandText} />
+            </StyledLogoWord>
+        </StyledNavbarbrand>
+    )
 }
 
+function NavTextLink(props) {
+    const [isHovered, setHovered] = useState(false);
+    const isButton = props.IsButton;
 
-export default function NavMenu() {
-    const [collapsed, setCollapsed] = useState(true);
+    const StyledNavText = styled.li`
+        display: flex;
+        width: inherit;
+        color: inherit;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 1;
+        place-content: center;
+        place-items: center;
+    `;
 
-    function toggleNavbar() {
-        setCollapsed(!collapsed);
+    const StyledButton = styled(Button)`
+        display: inline-block;
+        background: black;
+        colour: var(--egyptian-blue, inherit);
+        padding: 0.25em 1em;
+        border-radius: 20px;
+        place-content: center;
+        place-items: center;
+    `;
+
+    if (!isButton) {
+        return (
+            <StyledNavText>
+                <BetterLink Link={props.Link} LinkText={props.LinkText} />
+            </StyledNavText>
+        )
     }
 
     return (
-        <header>
-            <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
-                <Container>
-                    <NavbarBrand tag={Link} to="/">AutomatedFinances</NavbarBrand>
-                    <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-                    <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
-                        <ul className="navbar-nav flex-grow">
-                            <BetterNavLinks Path='/' Name="Home" />
-                            <BetterNavLinks Path='/counter' Name="Counter" />
-                            <BetterNavLinks Path='/careerhubData' Name="Career Hub Data" />
-                        </ul>
-                    </Collapse>
-                </Container>
-            </Navbar>
-        </header>
+        <StyledButton>
+            <BetterLink Link={props.Link} LinkText={props.LinkText} />
+        </StyledButton>
+    )
+}
+
+function SpacedNavOptions() {
+    const StyledSpacer = styled.div`
+        display: flex;
+        height: 100%;
+        flex-flow: row nowrap;
+        color: var(--navigation-noclick-color);
+        margin: 0 auto 0 var(--navigation-gap);
+    `;
+
+    return (
+        <StyledSpacer>
+            <NavTextLink Link='/' LinkText="Home" />
+            <NavTextLink Link='/About' LinkText="About" />
+            <NavTextLink Link='/Contact' LinkText="Contact" />
+        </StyledSpacer>
+    )
+}
+
+function SpacedNavUtilities() {
+    const StyledUtils = styled.div`
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        height: 60px;        
+        flex-direction: row;
+        padding: 0;
+        place-content: center;
+        place-items: center;
+    `;
+
+    return (
+        <StyledUtils>
+            <NavTextLink Link='/' LinkText="Add something here!" IsButton={true} />
+            <NavTextLink Link='/utsCareerHub' LinkText="Career Hub Data" IsButton={true} />
+        </StyledUtils>
+    )
+}
+
+export default function NavMenu() {
+    const BrandTitleText = "Auto Finances";
+
+    const StyledNavbar = styled.nav`
+        position: fixed;
+        top: 0:
+        left: 0;
+        background: black;
+        color: white;
+        width: 100vw;
+        height: var(--navigation-height, 60px);
+        display: flex;
+        flex-row: column nowrap;
+        contain: layout;
+        z-index: 10;
+    `;
+
+    return (
+        <StyledNavbar>
+            <NavbarBrand brandText={BrandTitleText} />
+            <SpacedNavOptions />
+            <SpacedNavUtilities />
+        </StyledNavbar>
     );
 }
