@@ -55,3 +55,4 @@ yarn-error.log*
 /AutomatedFinances/libs/*
 /AutomatedFinances/Scripts
 /AutomatedFinances/node_modules
+/AutomatedFinances/ClientApp/node_modules
