@@ -56,3 +56,4 @@ yarn-error.log*
 /AutomatedFinances/Scripts
 /AutomatedFinances/node_modules
 /AutomatedFinances/ClientApp/node_modules
+/EmploymentLibrary/LoginCredentials.cs

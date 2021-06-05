@@ -4,12 +4,12 @@ import MidTableDefault from '../Tables/MidTableDefault';
 import { TableLoadingPlaceHolder } from '../Tables/CommonStyledComponents/ModernBlackAndWhiteTable';
 
 type UTSJobListing = {
-    positionTitle: string;
-    summary: string;
-    company: string;
-    closingDate: Date;
-    detailURL: URL;
-    location: string;
+    PositionTitle: string;
+    Summary: string;
+    Company: string;
+    ClosingDate: Date;
+    DetailURL: URL;
+    Location: string;
 }
 
 // TODO: Extract to string extensions module
@@ -29,7 +29,7 @@ function CustomSelectColumnFilter({ column: { filterValue, preFilteredRows, setF
     const options: string[] = useMemo<string[]>(() => {
         const options = new Set();
         preFilteredRows.forEach((row: any) => {
-            options.add(row.original.company.trim())
+            options.add(row.original.Company.trim())
         });
 
         return [...options.values()];
@@ -84,7 +84,7 @@ export default function CareerHubData() {
         {
             Header: 'Listing Oppertunity',
             accessor: 'positionTitle_summary',
-            Cell: (data: { row: { original: { positionTitle: React.ReactNode; summary: any; }; }; }) => {
+            Cell: (data: { row: { original: { PositionTitle: React.ReactNode; Summary: any; }; }; }) => {
                 return (
                     <div>
                         <b style={{ textTransform: "capitalize" }}>{ data.row.original.positionTitle }</b>
@@ -99,7 +99,7 @@ export default function CareerHubData() {
         {
             Header: 'Company',
             accessor: 'company_location',
-            Cell: (data: { row: { original: { company: React.ReactNode; location: React.ReactNode; }; }; }) => {
+            Cell: (data: { row: { original: { Company: React.ReactNode; Location: React.ReactNode; }; }; }) => {
                 return (
                     <div>
                         <b style={{ textTransform: "capitalize" }}>{ data.row.original.company }</b>
@@ -124,7 +124,7 @@ export default function CareerHubData() {
     if (isLoading) {
         return (
             <TableLoadingPlaceHolder LoadingMessage={loadingMsg} />
-        )
+        );
     }
 
     return (<MidTableDefault columns={columns} data={data} />);

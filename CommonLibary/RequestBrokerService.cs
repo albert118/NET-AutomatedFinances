@@ -1,13 +1,12 @@
-﻿using System;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
-using Newtonsoft.Json;
-using System.Linq;
 
 namespace CommonLibrary.RequestBrokerService
 {
@@ -47,15 +46,30 @@ namespace CommonLibrary.RequestBrokerService
             }
         }
 
+        private HttpRequestMessage requestMessage = null;
+        
+        private HttpResponseHeaders responseHeaders = null;
+
+        public HttpRequestMessage GetFormRequestMessage()
+        {
+            return requestMessage;
+        }
+
+        public HttpResponseHeaders GetResponseHeaders()
+        {
+            return responseHeaders;
+        }
+
         public HttpClient Client { get; set; }
 
         public Broker(HttpClient client)
         {
             client.Timeout = TimeSpan.FromMilliseconds(TimeoutMs);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("User-Agent", "Automated Finances Employment Library Reporter");
-            client.DefaultRequestHeaders.Add("Accept", "text/html"); 
-            client.DefaultRequestHeaders.Add("Accept", "application/xhtml+xml");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xhtml+xml"));
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/html"));
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11");
             client.DefaultRequestHeaders.Add("Cache-Control", "no-cache");
             client.DefaultRequestHeaders.Add("Connection", "keep-alive");
             client.DefaultRequestHeaders.Add("Sec-Fetch-Dest", "document");
@@ -65,23 +79,19 @@ namespace CommonLibrary.RequestBrokerService
             Client = client;
         }
 
-        public string GetRequest(string url)
+        public async Task<string> GetRequestAsync(string url)
         {
-            var t = Task.Run(() => SimpleGetRequest<string>(url));
-            t.Wait();
-            var response = t.Result;
+            var response = await SimpleGetRequest<string>(url);
             return response;
         }
 
-        public T GetRequest<T>(string url, string key, string value)
+        public async Task<T> GetRequest<T>(string url, string key, string value)
         {
-            var t = Task.Run(() => GetRequest<T>(url, key + "=" + value));
-            t.Wait();
-            var response = t.Result;
+            var response = await GetRequest<T>(url, key + "=" + value);
             return response;
         }
 
-        public T GetRequest<T>(string url, Dictionary<string, string> queryParams)
+        public string GetRequestAsync<T>(string url, Dictionary<string, string> queryParams)
         {
             var pList = new List<string>();
 
@@ -90,17 +100,15 @@ namespace CommonLibrary.RequestBrokerService
                 pList.Add(k + "=" + queryParams[k]);
             }
 
-            var t = Task.Run(() => GetRequestWithParams<T>(url, string.Join("&", pList)));
+            var t = Task.Run(() => GetRequestWithParams<string>(url, string.Join("&", pList)));
             t.Wait();
             var response = t.Result;
             return response;
         }
 
-        public T GetRequest<T>(string url, dynamic queryParams)
+        public async Task<T> GetRequest<T>(string url, dynamic queryParams)
         {
-            var t = Task.Run(() => GetRequestWithParams<T>(url, GetQueryParameterFromDynamic(queryParams), addSlash: true));
-            t.Wait();
-            var response = t.Result;
+            var response = await GetRequestWithParams<T>(url, GetQueryParameterFromDynamic(queryParams), addSlash: true);
             return response;
         }
 
@@ -118,10 +126,8 @@ namespace CommonLibrary.RequestBrokerService
             return string.Join("&", vals);
         }
 
-        private async Task<T> GetRequestWithParams<T>(string url, string queryParams, bool addSlash = true)
+        private async Task<string> GetRequestWithParams<T>(string url, string queryParams, bool addSlash = true)
         {
-            //var baseServiceUrl = ServiceEndPointMappings.BaseServiceEndPoint;
-            //if (!baseServiceUrl.EndsWith("/") && addSlash) url += "/";
             if (!url.EndsWith("/") && addSlash) url += "/";
             if (!string.IsNullOrEmpty(queryParams) && !queryParams.StartsWith("&"))
             {
@@ -136,7 +142,7 @@ namespace CommonLibrary.RequestBrokerService
             {
                 try
                 {
-                    return JsonConvert.DeserializeObject<T>(reply);
+                    return reply;
                 }
                 catch (Exception e)
                 {
@@ -175,19 +181,37 @@ namespace CommonLibrary.RequestBrokerService
             throw new Exception("An error occured calling the service: " + url);
         }
 
-        public string PostJsonStringRequest(string url, string data)
+        public async Task<string> PostJsonStringRequestAsync(string url, string data)
         {
             var content = new StringContent(data, Encoding.UTF8, "application/json");
-            var t = Task.Run(() => PostRequest<string>(url, content));
-            t.Wait();
-            var response = t.Result;
+            var response = await PostRequest<string>(url, content);
+            return response;
+        }
+
+        public async Task<string> PostFormRequestAsync(string url, Dictionary<string, string> data)
+        {
+            requestMessage = null;
+            responseHeaders = null;
+
+            var mediaType = "application/x-www-form-urlencoded";
+            var urlEncoded_str = string.Join("&", data.Select(kvp => string.Format("{0}={1}", kvp.Key, kvp.Value)));
+            var data_string = HttpUtility.UrlEncode(urlEncoded_str);
+            var content = new StringContent(urlEncoded_str, Encoding.UTF8, mediaType);
+            
+            var formContent = new FormUrlEncodedContent(data);
+            var response = await PostRequest<string>(url, formContent);
             return response;
         }
 
         public string PostASCIIRequest(string url, Dictionary<string, string> data)
         {
-            var data_string = HttpUtility.UrlEncode(string.Join("&", data.Select(kvp => string.Format("{0}={1}", kvp.Key, kvp.Value))));
-            var content = new StringContent(data_string, Encoding.ASCII);
+            requestMessage = null;
+            responseHeaders = null;
+
+            var data_string = string.Join("&", data.Select(kvp => string.Format("{0}={1}", kvp.Key, kvp.Value)));
+            var urlEncoded_str = HttpUtility.UrlEncode(data_string);
+            var content = new StringContent(urlEncoded_str, Encoding.ASCII);
+            
             var t = Task.Run(() => PostRequest<string>(url, content));
             t.Wait();
             var response = t.Result;
@@ -201,6 +225,32 @@ namespace CommonLibrary.RequestBrokerService
             
             //response.EnsureSuccessStatusCode();
             
+            if (response.IsSuccessStatusCode)
+            {
+                try
+                {
+                    return reply;
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Error Deserializing Reply: " + reply, e);
+                }
+            }
+            else
+            {
+                throw new ServiceResponseException(url, "POST", response.StatusCode.ToString(), response.ReasonPhrase, reply);
+            }
+
+            throw new Exception("An error occured calling the service: " + url);
+        }
+        private async Task<string> PostRequest<T>(string url, FormUrlEncodedContent data, bool addSlash = true)
+        {
+            var response = await Client.PostAsync(url, data);
+            var reply = await response.Content.ReadAsStringAsync();
+            
+            requestMessage = response.RequestMessage;
+            responseHeaders = response.Headers;
+
             if (response.IsSuccessStatusCode)
             {
                 try

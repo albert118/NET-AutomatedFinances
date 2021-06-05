@@ -14,6 +14,7 @@
             public static readonly string STUDENTS_SIGN_ON_AUTH_URL = "https://aaf-login.uts.edu.au/idp/profile/SAML2/POST/SSO?execution=e1s1";
             public static readonly string SSO_SAML_RESPONSE_POST = "https://careerhub.uts.edu.au/providers/saml/sso";
             public static readonly string SSO_SAML_POST_HOST = "aaf-login.uts.edu.au";
+            public static readonly string STUDENTS_SIGN_ON_ORIGIN_URL = "https://aaf-login.uts.edu.au";
         }
         
         public static class SeekServices
