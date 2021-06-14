@@ -14,6 +14,28 @@ const StyledArrow = styled.span`
         color: inherit;
     `;
 
+const HeroContainer = styled.div`
+        padding-top: 8rem; 
+        padding-bottom: 4rem;
+        margin-bottom: 4rem;  
+    `;
+
+const GridContainer = styled.div`
+        position: relative;
+        display: grid;
+        grid-auto-columns: auto;
+        grid-auto-rows: auto;
+        row-gap: 16px
+    `;
+
+const StyledHeader = styled.h1`
+        color: black;
+        font-weight: 600;
+        letter-spacing: -.046em;
+        line-height: 1.08;
+        font-size: 4rem;
+    `;
+
 function Arrow(props) {
     return (
         <StyledArrow props>
@@ -37,28 +59,6 @@ function Arrow(props) {
         </StyledArrow>
     )
 }
-
-const HeroContainer = styled.div`
-        padding-top: 8rem; 
-        padding-bottom: 4rem;
-        margin-bottom: 4rem;  
-    `;
-
-const GridContainer = styled.div`
-        position: relative;
-        display: grid;
-        grid-auto-columns: auto;
-        grid-auto-rows: auto;
-        row-gap: 16px
-    `;
-
-const StyledHeader = styled.h1`
-        color: black;
-        font-weight: 600;
-        letter-spacing: -.046em;
-        line-height: 1.08;
-        font-size: 4rem;
-    `;
 
 export function Home() {
     const _fontSize = "22px";

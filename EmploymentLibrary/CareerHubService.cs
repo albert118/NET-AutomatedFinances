@@ -114,7 +114,7 @@ namespace EmploymentLibrary
         private static readonly int SAML_VAL_LEN = 2732;
         private static readonly int RELAY_VAL_LEN = 176;
         private static readonly int JSESSION_COOKIE_LENGTH = 10;
-        private static readonly int SAML_RESPONSE_VAL_LEN = 9740; // 9740/9744/9748 sometimes the val length... Never figured out why
+        private static readonly int SAML_RESPONSE_VAL_LEN = 9744; // 9740/9744/9748 sometimes the val length... Never figured out why
 
         private Dictionary<string, List<UTSJobListingsDTO>> JobListings_cache { get; set; }
 

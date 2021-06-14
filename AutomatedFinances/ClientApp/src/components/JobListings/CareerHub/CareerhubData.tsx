@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
-import MidTableDefault from '../Tables/MidTableDefault';
-import { TableLoadingPlaceHolder } from '../Tables/CommonStyledComponents/ModernBlackAndWhiteTable';
-import * as Ajax from '../AJAX/AJAX';
+import MidTableDefault from '../../Tables/MidTableDefault';
+import { TableLoadingPlaceHolder } from '../../Tables/CommonStyledComponents/ModernBlackAndWhiteTable';
+import * as Ajax from '../../AJAX/AJAX';
 
 type UTSJobListing = {
     PositionTitle: string;

@@ -3,8 +3,8 @@ import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Layout from './components/Navigation/Layout';
 import { Home } from './components/Home';
-import CareerhubData from './components/CareerHub/CareerhubData';
-import JobListingsSearchPage from './components/JobListingsSearchPage';
+import CareerhubData from './components/JobListings/CareerHub/CareerhubData';
+import JobListingsSearchPage from './components/JobListings/JobListingsSearchPage';
 
 import {
   HTTPCode400,
