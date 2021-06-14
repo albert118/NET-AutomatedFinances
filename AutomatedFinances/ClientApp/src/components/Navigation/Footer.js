@@ -5,9 +5,7 @@ import Wrapper from '../CommonStyledComponents/Wrapper';
 
 import '../../styles/NavMenu.css';
 
-
-function FooterSocial() {
-    const StyledSocial = styled.ul`
+const StyledSocial = styled.ul`
         display: flex;
         padding: 0;
         margin: 0 0 1.2rem;
@@ -16,14 +14,7 @@ function FooterSocial() {
         place-items: center;
     `;
 
-    return (
-        <StyledSocial>
-        </StyledSocial>
-        )
-}
-
-export default function Footer() {
-    const StyledFooter = styled.footer`
+const StyledFooter = styled.footer`
         background-color: black;
         width: 100%;
         height: auto;
@@ -31,17 +22,18 @@ export default function Footer() {
         margin: 0 auto;
         z-index: 10;
         color: var(--navigation-noclick-color, white);
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap
     `;
 
-    const FooterContentGrid = styled.div`
+const FooterContentGrid = styled.div`
         display: grid;
         grid-template-columns: repeat(6,1fr);
     `;
 
-    const FooterLine = styled.hr`
+const FooterLine = styled.hr`
         height: 0;
         width: auto;
         color: white;
@@ -53,6 +45,9 @@ export default function Footer() {
         outline: none;
     `;
 
+function FooterSocial() { return (<StyledSocial />); }
+
+export default function Footer() {
     return (
         <StyledFooter id="_footer">
             <Wrapper>

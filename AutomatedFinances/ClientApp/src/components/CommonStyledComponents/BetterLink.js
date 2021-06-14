@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 
 import "../../styles/homestyles.css";
 
-export default function BetterLink(props) {
-    const StyledHyperLink = styled(Link)`
+const StyledHyperLink = styled(Link)`
         color: inherit;
         width: inherit;
         color: inherit;
@@ -14,14 +13,17 @@ export default function BetterLink(props) {
         padding: 0 var(--navigation-gap);
         color: inherit !important;
         text-decoration: none !important;
-        font-size: ${props.FontSize ? props.FontSize : "18px" } !important;
+        font-size: ${props => props.FontSize ? props.FontSize : "18px"} !important;
         &:focus, &:hover, &:visited, &:link, &:active {
             text-decoration: none;
         }
     `;
-    
+
+export default function BetterLink(props) {
     return (
-        <StyledHyperLink to={{ pathname: props.Link }}>{ props.LinkText }</StyledHyperLink>
+        <StyledHyperLink props={props} to={{ pathname: props.Link }}>
+            { props.LinkText}
+        </StyledHyperLink>
     )
 }
 

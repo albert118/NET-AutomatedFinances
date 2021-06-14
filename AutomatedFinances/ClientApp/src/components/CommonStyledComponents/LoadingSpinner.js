@@ -6,41 +6,7 @@ import Wrapper from './Wrapper';
 
 import "../../styles/contrastpalette.css"
 
-export function BounceText (props) {
-    const Bounce = styled.div`
-        animation: 3.5s ${keyframes`${bounce}`} infinite;
-        color: ${props.fontColor ? props.fontColor : "black"};
-        font-size: ${props.fontSize ? props.fontSize : "2em"};
-        font-weight: bold;
-        text-align: center;
-        place-self: center;
-    `;
-
-    return (
-        <Bounce className="loading-bounce">
-            {props.LoadingMessage ? props.LoadingMessage : "Loading..."}
-        </Bounce>
-    )
-}
-
-export function FlashText (props) {
-    const Flash = styled.div`
-        animation: 3.5s ${keyframes`${flash}`} infinite;
-        color: ${props.fontColor ? props.fontColor : "black"};
-        font-size: ${props.fontSize ? props.fontSize : "2em" };
-        font-weight: bold;
-        text-align: center;
-        place-self: center;
-    `;
-
-    return (
-        <Flash className={props.className}>
-            {props.LoadingMessage ? props.LoadingMessage : "Loading..."}
-        </Flash>)
-}
-
-export function LoadingSpinner (props) {
-    const StyledSpinner = styled(motion.div)`
+const StyledSpinner = styled(motion.div)`
         background: black;
         border-radius: 10px;
         width: 50px;
@@ -49,6 +15,53 @@ export function LoadingSpinner (props) {
         place-self: center;
     `;
 
+const Bounce = styled.div`
+        animation: 3.5s ${keyframes`${bounce}`} infinite;
+        color: ${props => props.fontColor ? props.fontColor : "black"};
+        font-size: ${props => props.fontSize ? props.fontSize : "2em"};
+        font-weight: bold;
+        text-align: center;
+        place-self: center;
+    `;
+
+const Flash = styled.div`
+        animation: 3.5s ${keyframes`${flash}`} infinite;
+        color: ${props => props.fontColor ? props.fontColor : "black"};
+        font-size: ${props => props.fontSize ? props.fontSize : "2em"};
+        font-weight: bold;
+        text-align: center;
+        place-self: center;
+    `;
+
+const StyledLoader = styled.div`
+        margin-right: auto;        
+        margin-left: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+    `;
+
+const SingleGrid = styled.div`
+        display: grid;
+        grid-template-rows: 200px;
+        row-gap: 16px
+    `;
+
+export function BounceText (props) {
+    return (
+        <Bounce props={props} className="loading-bounce">
+            {props.LoadingMessage ? props.LoadingMessage : "Loading..."}
+        </Bounce>
+    )
+}
+
+export function FlashText (props) {
+    return (
+        <Flash props={props} className={props.className}>
+            {props.LoadingMessage ? props.LoadingMessage : "Loading..."}
+        </Flash>)
+}
+
+export function LoadingSpinner (props) {
     return (
         <StyledSpinner className={props.ClassName}
             animate={{
@@ -64,17 +77,10 @@ export function LoadingSpinner (props) {
                 repeatDelay: 1
             }}
         />
-        
     )
 }
 
 function StyledLoading(props) {
-    const StyledLoader = styled.div`
-        margin-right: auto;        
-        margin-left: auto;
-        padding-left: 16px;
-        padding-right: 16px;
-    `;
     function renderChildren() {
         return React.Children.map(props.children, child => {
             return React.cloneElement(child, {
@@ -101,12 +107,6 @@ export function Demo() {
 
     // uses framer-motion
     // docs: https://www.framer.com/motion/
-
-    const SingleGrid = styled.div`
-        display: grid;
-        grid-template-rows: 200px;
-        row-gap: 16px
-    `;
 
     return (
         <Wrapper>
