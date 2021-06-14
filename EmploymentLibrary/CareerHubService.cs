@@ -124,6 +124,9 @@ namespace EmploymentLibrary
             client.BaseAddress = new Uri(ExternalServiceEndPoints.UTSServices.QUERY_URL);
             this.Client = client;
 
+            // init the cache
+            JobListings_cache = new Dictionary<string, List<UTSJobListingsDTO>>();
+
             // handle a new login
             NewLoginRequest();
             // send over the user credentials

@@ -9,19 +9,19 @@ namespace EmploymentLibrary
     public class CareerHubController : ControllerBase
     {
         private readonly ILogger<CareerHubController> _logger;
+        private readonly ICareerHubService _careerHubService;
 
-        #pragma warning disable IDE0051 // Remove unused private members
-        private CareerHubController(ILogger<CareerHubController> logger)
+        public CareerHubController(ILogger<CareerHubController> logger, ICareerHubService careerHubService)
         {
+            _careerHubService = careerHubService;
             _logger = logger;
         }
-        #pragma warning restore IDE0051 // Remove unused private members
 
         [HttpPost]
         public List<UTSJobListingsDTO> Post([FromBody] List<string> searchTerms)
         {
             _logger.LogInformation("[POST]    Retrieved {0} record from {1} with search terms {2} ", searchTerms.Count, typeof(ICareerHubService).FullName, string.Join(",", searchTerms));
-            var retVal = new CareerHubService().BulkSearcher(searchTerms);
+            var retVal = _careerHubService.BulkSearcher(searchTerms);
             return retVal;
         }
 
@@ -29,7 +29,7 @@ namespace EmploymentLibrary
         public List<UTSJobListingsDTO> Get(string searchTerm)
         {
             _logger.LogInformation("[GET]    Retrieved 1 record from {0} with search term {1} ", typeof(ICareerHubService).FullName, searchTerm);
-            var retVal = new CareerHubService().QuickSearcher(searchTerm);
+            var retVal = _careerHubService.QuickSearcher(searchTerm);
             return retVal;
         }
     }

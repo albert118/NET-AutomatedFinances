@@ -1,4 +1,13 @@
-import React, { Component } from 'react';
+// API source to request from, root url
+//const APIRootPath = "http://localhost:8000";
+const APIRootPath = "";
+
+// standard HTTP errors to check for
+const HttpNotFound = 404;
+const HttpUnauthorised = 401;
+const HttpForbidden = 403
+const HttpBadRequest = 400;
+const HttpMovedPermanently = 301;
 
 function APIError(message, data, status) {
     /* API Error wrapper. Attempts to parse the response
@@ -27,66 +36,57 @@ function APIError(message, data, status) {
     };
 }
 
+async function getCsrfToken(APIRootPath) {
+    const response = await fetch(`${APIRootPath}/accounts/csrf/`, {
+        credentials: 'include',
+    });
+    const data = await response.json();
+    return data.csrfToken
+}
+
 export const fetchResource = (path, userOptions = {}) => {
-
-    async function getCsrfToken(APIRootPath) {
-        const response = await fetch(`${APIRootPath}/accounts/csrf/`, {
-            credentials: 'include',
-        });
-        const data = await response.json();
-        return data.csrfToken
-    }
-
-    // standard HTTP errors to check for
-    const HttpNotFound = 404;
-    const HttpUnauthorised = 401;
-    const HttpForbidden = 403
-    const HttpBadRequest = 400;
-    const HttpMovedPermanently = 301;
-
-    // API source to request from, root url
-    const APIRootPath = "http://localhost:8000";
     // build the query's url...
-    const url = `${APIRootPath}/${path}`;
-    
+    const url = APIRootPath.length == 0 ? path : `${APIRootPath}/${path}`;
 
     // data added after method check
-    let defaultOptions = {};
-    let defaultHeaders = {};
+    var defaultOptions = {};
+    var defaultHeaders = {};
 
-    if ("method" in userOptions) {
-        if (userOptions["method"] === "POST") {
-            // default query options for the backend PAPI.
-            defaultOptions = {
-                mode: "cors",
-                credentials: "include",
-            };
-
-            defaultHeaders = {
-                'Content-Type': 'application/json;charset=utf-8',
-                'Access-Control-Allow-Origin': '*',
-                // CSRF Token for backend requests...helper fetch function grabs it.
-                'x-csrftoken': getCsrfToken(APIRootPath),
-            };
-        } else {
-            // default query options for the backend PAPI.
-            defaultOptions = {
-                credentials: "include",
-            };
-
-            defaultHeaders = {
-                'Content-Type': 'application/json;charset=utf-8',
-            };
-        }
-    } else {
-        throw new APIError(
-            `Request failed. No method set!!`,
-            null,
-            "NO METHOD SET."
-        );
-    }
+    //////////////////////////////
+    // ENABLE ONCE ACCOUNTS ADDED
+    //////////////////////////////
+    //if ("method" in userOptions) {
+    //    if (userOptions.method === "POST") {
+    //        // default query options for the backend PAPI.
+    //        //defaultOptions = {
+    //        //    mode: "cors",
+    //        //    credentials: "include",
+    //        //};
+    //
+    //        defaultHeaders = {
+    //            'Content-Type': 'application/json;charset=utf-8',
+    //            'Access-Control-Allow-Origin': '*',
+    //            // CSRF Token for backend requests...helper fetch function grabs it.
+    //            //'x-csrftoken': getCsrfToken(APIRootPath),
+    //        };
+    //    } else if (userOptions.method === "GET") {
+    //        // default query options for the backend PAPI.
+    //        //defaultOptions = {
+    //        //    credentials: "include",
+    //        //};
+    //
+    //        defaultHeaders = {
+    //            'Content-Type': 'application/json;charset=utf-8',
+    //        };
+    //    }
+    //} else {
+    //    throw new APIError(
+    //        `Request failed. No method set!!`,
+    //        null,
+    //        "NO METHOD SET."
+    //    );
+    //}
     
-
     const options = {
         // union-combine the options,
         ...defaultOptions,
@@ -99,53 +99,51 @@ export const fetchResource = (path, userOptions = {}) => {
     };
 
     // stringify the data to upload...
-    if (options.boday && typeof options.body === 'object') {
+    if (options.body && typeof options.body === 'object') {
         options.body = JSON.stringify(options.body);
     }
 
-    let response = null;
+    var response = null;
     
-    return fetch(url, options)
-        .then(responseObject => {
-            response = responseObject;
+    return fetch(url, options).then(responseObject => {
+        response = responseObject;
 
-            switch (response.status) {
-                case HttpBadRequest:
-                    console.log(`Unauthorised request with options:${options}`);
-                    this.props.history.push('/HTTPerror/error400');
-                    break;
-                case HttpUnauthorised:
-                    console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
-                    this.props.history.push('/HTTPerror/error401');
-                    break;
-                case HttpForbidden:
-                    console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
-                    this.props.history.push('/HTTPerror/error403');
-                    break;
-                case HttpNotFound:
-                    console.log(`Resource at: ${path} not found: 404`);
-                    this.props.history.push('/HTTPerror/error404');
-                    break;
-                default:
-                    if (response.status < 200 || response.status >= 300) {
-                        // return the response message as text
-                        return response.text();
-                    } else {
-                        // return the json response
-                        return response.json();
-                    }
-            }
-        }).then(parsedResponse => {
-            if (response.status === HttpMovedPermanently) {  
-                return parsedResponse; // redirect!!
-            } else if (response.status < 200 || response.status >= 300) {
-                // throw the error if we get here.
-                throw parsedResponse;
-            }
-
-            // success!!
-            return parsedResponse;
-        }).catch(error => {
+        switch (response.status) {
+            case HttpBadRequest:
+                console.log(`Unauthorised request with options:${options}`);
+                this.props.history.push('/HTTPerror/error400');
+                break;
+            case HttpUnauthorised:
+                console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
+                this.props.history.push('/HTTPerror/error401');
+                break;
+            case HttpForbidden:
+                console.log(`Unauthorised request for resource at ${path}!\nThis has been logged.`);
+                this.props.history.push('/HTTPerror/error403');
+                break;
+            case HttpNotFound:
+                console.log(`Resource at: ${path} not found: 404`);
+                this.props.history.push('/HTTPerror/error404');
+                break;
+            default:
+                if (response.status < 200 || response.status >= 300) {
+                    // return the response message as text
+                    return response.text();
+                } else {
+                    // return the json response
+                    return response.json();
+                }
+        }
+    }).then(parsedResponse => {
+        if (response.status === HttpMovedPermanently) {  
+            return parsedResponse; // redirect!!
+        } else if (response.status < 200 || response.status >= 300) {
+            // throw the error if we get here.
+            throw parsedResponse;
+        }
+        // success!!
+        return parsedResponse;
+    }).catch(error => {
             // utilise the custom API error function here.
             // response doesnt exist unless an HTTP error has occured.
             if (response) {

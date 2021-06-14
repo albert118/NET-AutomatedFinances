@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import MidTableDefault from '../Tables/MidTableDefault';
 import { TableLoadingPlaceHolder } from '../Tables/CommonStyledComponents/ModernBlackAndWhiteTable';
+import * as Ajax from '../AJAX/AJAX';
 
 type UTSJobListing = {
     PositionTitle: string;
@@ -29,7 +30,7 @@ function CustomSelectColumnFilter({ column: { filterValue, preFilteredRows, setF
     const options: string[] = useMemo<string[]>(() => {
         const options = new Set();
         preFilteredRows.forEach((row: any) => {
-            options.add(row.original.Company.trim())
+            options.add(row.original.company.trim())
         });
 
         return [...options.values()];
@@ -72,9 +73,8 @@ export default function CareerHubData() {
     const loadingMsg = "Loading the Careerhub data...";
 
     async function populateCareerHubData() {
-        const response = await fetch('/CareerHub');
-        const data = await response.json();
-        setDataList(data)
+        const data = await Ajax.fetchResource('/CareerHub?searchTerm=software', { method: 'GET' });
+        setDataList(data);
         setLoading(false);
     }
 
