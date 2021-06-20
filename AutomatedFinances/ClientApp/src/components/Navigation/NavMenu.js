@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button} from 'reactstrap';
 import styled from 'styled-components'
 import BetterLink from '../CommonStyledComponents/BetterLink';
@@ -6,61 +6,78 @@ import BetterLink from '../CommonStyledComponents/BetterLink';
 import '../../styles/NavMenu.css';
 
 const StyledNavbar = styled.nav`
-        top: 0:
-        left: 0;
+    /* grid config */    
+        display: grid;
+        grid-template-columns: [branding-hero-nav] 20% [hero-nav-opts] 44% [button-nav] 35%;
+        grid-template-rows: [nav-row] 100%;
+        column-gap: 10px;
+        row-gap: 7px;
+    /* center and align nav options for read-ability*/
+        justify-items: start;
+        align-items: center; 
+    /* top align our nav bar */
         background: black;
         color: white;
         width: 100%;
         height: var(--navigation-height, 60px);
-        display: flex;
-        flex-row: column nowrap;
         contain: layout;
         z-index: 10;
         overflow: hidden;
+    /* make sure the nav doesnt stick right to the edge of the screen. */
+        padding-left: 25px;
+        padding-right: 25px;
+    /* disable labels on nav options. */
+        label {
+            display: none;
+        }
     `;
 
 const StyledSpacer = styled.div`
+    /* configure position in parent grid. */
+        grid-column-start: hero-nav-opts 1;
+    /* flex nav options. */   
         display: flex;
-        height: 100%;
         flex-flow: row nowrap;
+        place-content: center;
+        place-items: center;
+        width: auto;
+        height: 100%;
         color: var(--navigation-noclick-color);
         margin: 0 auto 0 var(--navigation-gap);
     `;
 
 const StyledUtils = styled.div`
-        position: absolute;
-        top: 0;
-        right: 0;
         display: flex;
-        height: 60px;        
-        flex-direction: row;
+        height: 60px;
         padding: 0;
         place-content: center;
         place-items: center;
     `;
 
 const StyledNavbarbrand = styled.div`
-        display: inline-flex;        
+    /* configure position in parent grid. */
+        grid-column-start: branding-hero-nav 1;
+    /* flex brand. */        
+        display: inline-flex;
         width: auto;        
         height: 100%;
         flex: none;
+    /* padding and alignment. */
         padding: 0;
+        justify-self: start;
+        align-self: center;
+    /* branding placement. */
         place-content: center;
         place-items: center;
     `;
 
 const StyledLogo = styled.svg`
-        width: 14px;
-        heigh: 21px;
-        margin-right: 12px;
+        min-width: 55px;
+        max-width: 55px;
+        min-height: 55px;
+        max-height: 55px;
+        margin-right: 7px;
         vertical-align: middle;
-    `;
-
-const StyledLogoWord = styled.span`
-        text-decoration: none;
-        color: var(--sky-blue-crayola, white) !important;
-        font-size: 0.8rem;
-        font-weight: 650;
     `;
 
 const StyledNavText = styled.li`
@@ -77,31 +94,45 @@ const StyledNavText = styled.li`
 const StyledButton = styled(Button)`
         display: inline-block;
         background: black;
-        colour: var(--egyptian-blue, inherit);
         padding: 0.25em 1em;
+        margin-right: 7px;
+        margin-left: 7px;
         border-radius: 20px;
         place-content: center;
         place-items: center;
+
+        &:hover {
+            color: ${props => props.hoverColor ? props.hoverColor : "var(--gold-metallic)"};
+        }
     `;
 
-
 function NavbarBrand(props) {
-    // prop: Link should redirect to Home
-    // prop: brandText the brand text
+    const color = "var(--sky-blue-crayola, white)";
+    const fontSize = "1.2rem";
+    const fontWeight = "600";
+    const lineHeight = "1.05";
+    const letterSpacing = "0.49rem";
+
     return (
-        <StyledNavbarbrand>
-            <StyledLogo />
-            <StyledLogoWord>
-                <BetterLink Link="/" LinkText={props.brandText} />
-            </StyledLogoWord>
+        <StyledNavbarbrand className="styled-navbar-brand">
+            <StyledLogo className="styled-logo"/>
+            {/* style this link with custom styling for StyledLogoWord */}
+            <BetterLink
+                className="styled-logo-word"
+                color={color}
+                fontSize={fontSize}
+                fontWeight={fontWeight}
+                lineHeight={lineHeight}
+                letterSpacing={letterSpacing}
+                Link="/"
+                LinkText={props.brandText} />
         </StyledNavbarbrand>
     )
 }
 
 function NavTextLink(props) {
-    const [isHovered, setHovered] = useState(false);
     const isButton = props.IsButton;
-
+    
     if (!isButton) {
         return (
             <StyledNavText>
@@ -116,7 +147,6 @@ function NavTextLink(props) {
         </StyledButton>
     )
 }
-
 
 function SpacedNavOptions() {
     return (
@@ -141,7 +171,8 @@ export default function NavMenu() {
     const BrandTitleText = "Auto Finances";
 
     return (
-        <StyledNavbar>
+        <StyledNavbar role="full-horizontal">
+            {/* Full horizontal styling. */}
             <NavbarBrand brandText={BrandTitleText} />
             <SpacedNavOptions />
             <SpacedNavUtilities />

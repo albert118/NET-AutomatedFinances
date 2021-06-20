@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import styled from 'styled-components'
 import BetterLink from '../CommonStyledComponents/BetterLink';
 import Wrapper from '../CommonStyledComponents/Wrapper';
@@ -49,17 +49,33 @@ function FooterSocial() { return (<StyledSocial />); }
 
 export default function Footer() {
     return (
-        <StyledFooter id="_footer">
+        <StyledFooter className="styled-footer" id="_footer">
             <Wrapper>
-                <BetterLink Link="https://get.asp.net/" LinkText="ASP NET Core and C#" />
-                <BetterLink Link="https://facebook.github.io/react/" LinkText="React" />
-                <BetterLink Link="http://getbootstrap.com/" LinkText="React + Bootstrap" />
+                <BetterLink
+                    className="footer-link"
+                    fontWeight="400"
+                    fontSize="1.1rem"
+                    lineHeight="1rem"
+                    letterSpacing="0.05rem"
+                    Link="https://get.asp.net/" LinkText="ASP NET Core and C#" />
+                <BetterLink
+                    className="footer-link"
+                    fontWeight="400"
+                    fontSize="1.1rem"
+                    lineHeight="1rem"
+                    letterSpacing="0.05rem"
+                    Link="https://facebook.github.io/react/" LinkText="React" />
+                <BetterLink
+                    className="footer-link"
+                    fontWeight="400"
+                    fontSize="1.1rem"
+                    lineHeight="1rem"
+                    letterSpacing="0.05rem"
+                    Link="http://getbootstrap.com/" LinkText="React + Bootstrap" />
             </Wrapper>
-            <FooterLine />
-            <Wrapper>
-                Copyright © 2021 Albert Ferguson
-            </Wrapper>
+            <FooterLine className="footer-line-break" />
+            <Wrapper className="footer-legal">Copyright © 2021 Albert Ferguson</Wrapper>
             <FooterSocial />
         </StyledFooter>
-   )
+    );
 }
