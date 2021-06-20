@@ -161,8 +161,8 @@ function SpacedNavOptions() {
 function SpacedNavUtilities() {
     return (
         <StyledUtils>
-            <NavTextLink Link='/' LinkText="Add something here!" IsButton={true} />
-            <NavTextLink Link='/utsCareerHub' LinkText="Career Hub Data" IsButton={true} />
+            <NavTextLink Link='/jobListingsSearch' LinkText="Search Jobs" IsButton={true} />
+            <NavTextLink Link='/utsCareerHub' LinkText="UTS CareerHub Job Postings" IsButton={true} />
         </StyledUtils>
     )
 }
