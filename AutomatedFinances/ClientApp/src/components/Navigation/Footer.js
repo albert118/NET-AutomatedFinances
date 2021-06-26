@@ -1,13 +1,11 @@
-﻿import React, { useState } from 'react';
+﻿import React from 'react';
 import styled from 'styled-components'
 import BetterLink from '../CommonStyledComponents/BetterLink';
 import Wrapper from '../CommonStyledComponents/Wrapper';
 
 import '../../styles/NavMenu.css';
 
-
-function FooterSocial() {
-    const StyledSocial = styled.ul`
+const StyledSocial = styled.ul`
         display: flex;
         padding: 0;
         margin: 0 0 1.2rem;
@@ -16,32 +14,28 @@ function FooterSocial() {
         place-items: center;
     `;
 
-    return (
-        <StyledSocial>
-        </StyledSocial>
-        )
-}
+const FooterWrapper = styled.div`
+        min-height: 100%;
+    /* the bottom margin is the negative value of the footer's height */
+        margin: 0 auto -210px;
+        margin-top: 2rem;
+        padding-top: 3rem;
+    `;
 
-export default function Footer() {
-    const StyledFooter = styled.footer`
+const StyledFooter = styled.footer`
+    /* also set the margin height as a negative of this value! */
+        height: 210px;
+        padding-top: 1.5rem;
         background-color: black;
-        width: 100%;
-        height: auto;
-        padding: 3.2rem 0;
-        margin: 0 auto;
         z-index: 10;
         color: var(--navigation-noclick-color, white);
+        flex-shrink: 0;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap
     `;
 
-    const FooterContentGrid = styled.div`
-        display: grid;
-        grid-template-columns: repeat(6,1fr);
-    `;
-
-    const FooterLine = styled.hr`
+const FooterLine = styled.hr`
         height: 0;
         width: auto;
         color: white;
@@ -53,18 +47,39 @@ export default function Footer() {
         outline: none;
     `;
 
+function FooterSocial() { return (<StyledSocial />); }
+
+export default function Footer() {
     return (
-        <StyledFooter id="_footer">
-            <Wrapper>
-                <BetterLink Link="https://get.asp.net/" LinkText="ASP NET Core and C#" />
-                <BetterLink Link="https://facebook.github.io/react/" LinkText="React" />
-                <BetterLink Link="http://getbootstrap.com/" LinkText="React + Bootstrap" />
-            </Wrapper>
-            <FooterLine />
-            <Wrapper>
-                Copyright © 2021 Albert Ferguson
-            </Wrapper>
-            <FooterSocial />
-        </StyledFooter>
-   )
+        <FooterWrapper>
+            <StyledFooter className="styled-footer" id="_footer">
+                <Wrapper>
+                    <BetterLink
+                        className="footer-link"
+                        fontWeight="400"
+                        fontSize="1.1rem"
+                        lineHeight="1rem"
+                        letterSpacing="0.05rem"
+                        Link="https://get.asp.net/" LinkText="ASP NET Core and C#" />
+                    <BetterLink
+                        className="footer-link"
+                        fontWeight="400"
+                        fontSize="1.1rem"
+                        lineHeight="1rem"
+                        letterSpacing="0.05rem"
+                        Link="https://facebook.github.io/react/" LinkText="React" />
+                    <BetterLink
+                        className="footer-link"
+                        fontWeight="400"
+                        fontSize="1.1rem"
+                        lineHeight="1rem"
+                        letterSpacing="0.05rem"
+                        Link="http://getbootstrap.com/" LinkText="React + Bootstrap" />
+                </Wrapper>
+                <FooterLine className="footer-line-break" />
+                <Wrapper className="footer-legal">Copyright © 2021 Albert Ferguson</Wrapper>
+                <FooterSocial />
+            </StyledFooter>
+        </FooterWrapper>
+    );
 }

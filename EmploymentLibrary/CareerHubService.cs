@@ -21,14 +21,14 @@ namespace EmploymentLibrary
 
     public interface ICareerHubService
     {
-        List<UTSJobListingsDTO> QuickSearcher(string searchTerm);
+        List<UTSJobListingsDTO> QuickSearcher(string searchTerm, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null);
 
         /// <summary>
         /// Run a search query into the UTS careerhub site.
         /// </summary>
         /// <param name="searchTerms"></param>
         /// <returns>A list of non-duplicated query results 'potential job listings' as DTOs</returns>
-        List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms);
+        List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null);
     }
 
     public class CareerHubService : ICareerHubService
@@ -114,7 +114,7 @@ namespace EmploymentLibrary
         private static readonly int SAML_VAL_LEN = 2732;
         private static readonly int RELAY_VAL_LEN = 176;
         private static readonly int JSESSION_COOKIE_LENGTH = 10;
-        private static readonly int SAML_RESPONSE_VAL_LEN = 9740; // 9740/9744/9748 sometimes the val length... Never figured out why
+        private static readonly int SAML_RESPONSE_VAL_LEN = 9744; // 9740/9744/9748 sometimes the val length... Never figured out why
 
         private Dictionary<string, List<UTSJobListingsDTO>> JobListings_cache { get; set; }
 
@@ -135,19 +135,19 @@ namespace EmploymentLibrary
             PostSAMLResponse();
         }
 
-        public List<UTSJobListingsDTO> QuickSearcher(string searchTerm)
+        public List<UTSJobListingsDTO> QuickSearcher(string searchTerm, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
         {
             if (string.IsNullOrEmpty(searchTerm)) return new List<UTSJobListingsDTO>(); ;
 
             if (!JobListings_cache.TryGetValue(searchTerm, out _))
             {
-                JobListings_cache[searchTerm] = new CareerHubService().BulkSearcher(new List<string>() { searchTerm });
+                JobListings_cache[searchTerm] = new CareerHubService().BulkSearcher(new List<string>() { searchTerm }, lowerDateFilter, upperDateFilter);
             }
 
             return JobListings_cache[searchTerm];
         }
 
-        public List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms)
+        public List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
         {
             var retData = new List<UTSJobListingsDTO>();
             
@@ -159,6 +159,18 @@ namespace EmploymentLibrary
                     var dtos = MapSerializedDataToDTO(rawData).Where(dto => !retData.Contains(dto));
                     retData.AddRange(dtos);
                 }
+            }
+
+            if (lowerDateFilter.HasValue)
+            {
+                // TODO atm this will always return all data, as DTOs are retrieved directly (no db storage).
+                retData = retData.Where(d => true).ToList();
+            }
+
+            if (upperDateFilter.HasValue)
+            {
+                // TODO this will be from a database eventually. So the service wont have to do a string comp once that's implemented.
+                retData = retData.Where(d => DateTime.Parse(d.ClosingDate) <= upperDateFilter.Value).ToList();
             }
 
             return retData.ToList();
@@ -268,11 +280,7 @@ namespace EmploymentLibrary
                     }
                 }
 
-                // Case: job-list-close, then we have the application closing date
-                // Note: <div class="job-list-close" title="Application Closes">
-                //           <span > Closes < /span >
-                //           - dd mmm yyyy
-                //           </div>
+                // Case: Location
                 else if (k == 2)
                 {
                     var headAdjustment = 1;
@@ -293,8 +301,11 @@ namespace EmploymentLibrary
                     }
                 }
 
-                // Case: em, then we have the location
-                // Note: <em>location</em>
+                // Case: Closing date
+                // Note: <div class="job-list-close" title="Application Closes">
+                //           <span > Closes < /span >
+                //           - dd mmm yyyy
+                //           </div>
                 else if (k == 3)
                 {
                     var headAdjustment = 5;
@@ -315,8 +326,7 @@ namespace EmploymentLibrary
                     }
                 }
 
-                // Case: em, then we have the location
-                // Note: <em>location</em>
+                // Case: Summary
                 else if (k == 4)
                 {
                     var headAdjustment = 1;

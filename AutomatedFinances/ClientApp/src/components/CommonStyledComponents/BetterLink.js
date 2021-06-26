@@ -4,24 +4,49 @@ import { Link } from 'react-router-dom';
 
 import "../../styles/homestyles.css";
 
-export default function BetterLink(props) {
-    const StyledHyperLink = styled(Link)`
-        color: inherit;
-        width: inherit;
-        color: inherit;
+const StyledHyperLink = styled(Link)`
+        color: ${props => props.$color ? props.$color : "inherit"};
+        width: ${props => props.$width ? props.$width : "inherit"};
+        font-weight: ${props => props.$fontWeight ? props.$fontWeight : "400"};
+        line-height: ${props => props.$lineHeight ? props.$lineHeight : "1rem"};
+        letter-spacing: ${props => props.$letterSpacing ? props.$letterSpacing : "0.02rem"};
         place-content: center;
         place-items: center;
         padding: 0 var(--navigation-gap);
-        color: inherit !important;
         text-decoration: none !important;
-        font-size: ${props.FontSize ? props.FontSize : "18px" } !important;
-        &:focus, &:hover, &:visited, &:link, &:active {
-            text-decoration: none;
+        font-size: ${props => props.$fontSize ? props.$fontSize : "18px"};
+        
+        &:hover, &:focus, &:visited, &:link, &:active {
+            text-decoration: none !important;
         }
+        
+        &:hover {
+            color: ${props => props.$hoverColor ? props.$hoverColor : "var(--gold-metallic)"};
+        }
+        
     `;
-    
+
+
+export default function BetterLink(props) {
+/* 
+ *  use $ prefix to mark a prop as transient, avoids it being passed to the
+ *  underlying component.
+ *  https://stackoverflow.com/questions/49834251/how-to-extend-styled-component-without-passing-props-to-underlying-dom-element 
+ */
+
     return (
-        <StyledHyperLink to={{ pathname: props.Link }}>{ props.LinkText }</StyledHyperLink>
+        <StyledHyperLink
+            className="better-link"
+            $color={props.color}
+            $width={props.width}
+            $fontSize={props.fontSize}
+            $hoverColor={props.hoverColor}
+            $fontWeight={props.fontWeight}
+            $lineHeight={props.lineHeight}
+            $letterSpacing={props.letterSpacing}
+            to={{ pathname: props.Link }}
+        >
+            { props.LinkText}
+        </StyledHyperLink>
     )
 }
-

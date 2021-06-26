@@ -5,9 +5,8 @@ import Wrapper from './CommonStyledComponents/Wrapper';
 
 import "../styles/homestyles.css";
 
-function Arrow(props) {
-    const StyledArrow = styled.span`
-        height: ${props.Size ? props.Size: "6px"};
+const StyledArrow = styled.span`
+        height: ${props => props.Size ? props.Size : "6px"};
         margin-left: 0.32em;
         position: relative;
         display: inline-block;
@@ -15,8 +14,31 @@ function Arrow(props) {
         color: inherit;
     `;
 
+const HeroContainer = styled.div`
+        padding-top: 8rem; 
+        padding-bottom: 4rem;
+        margin-bottom: 4rem;  
+    `;
+
+const GridContainer = styled.div`
+        position: relative;
+        display: grid;
+        grid-auto-columns: auto;
+        grid-auto-rows: auto;
+        row-gap: 16px
+    `;
+
+const StyledHeader = styled.h1`
+        color: black;
+        font-weight: 600;
+        letter-spacing: -.046em;
+        line-height: 1.08;
+        font-size: 4rem;
+    `;
+
+function Arrow(props) {
     return (
-        <StyledArrow>
+        <StyledArrow props>
             <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 viewBox="0 0 14 14" 
@@ -39,28 +61,6 @@ function Arrow(props) {
 }
 
 export function Home() {
-    const HeroContainer = styled.div`
-        padding-top: 8rem; 
-        padding-bottom: 4rem;
-        margin-bottom: 4rem;  
-    `;
-
-    const GridContainer = styled.div`
-        position: relative;
-        display: grid;
-        grid-auto-columns: auto;
-        grid-auto-rows: auto;
-        row-gap: 16px
-    `;
-
-    const StyledHeader = styled.h1`
-        color: black;
-        font-weight: 600;
-        letter-spacing: -.046em;
-        line-height: 1.08;
-        font-size: 4rem;
-    `;
-
     const _fontSize = "22px";
     const _arrowSize = "12px";
 

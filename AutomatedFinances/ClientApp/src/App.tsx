@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import Layout from './components/Navigation/Layout';
 import { Home } from './components/Home';
-import CareerhubData from './components/CareerHub/CareerhubData';
+import JobListingsSearchPage from './components/JobListings/JobListingsSearchPage';
+import CareerHubData from './components/JobListings/CareerHub/CareerhubData';
 
 import {
   HTTPCode400,
@@ -18,30 +19,31 @@ import './custom.css'
 //import { withCookies } from 'react-cookie'; // Cookies logic implented
 
 export default class App extends Component {
-  static displayName = App.name;
+    static displayName = App.name;
 
-  render () {
-    return (
-      <div className="App">
-
-        {/* Excellent answer on rendering a / route */}
-        {/* https://stackoverflow.com/a/44292410/9505707 */}
-        <Layout>
-            <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/utsCareerHub' component={CareerhubData} />
-                {/*  Error routes */}
-                <Route path='/error400' component={HTTPCode400} />
-                <Route path='/error401' component={HTTPCode401} />
-                <Route path='/error403' component={HTTPCode403} />
-                <Route path='/error404' component={HTTPCode404} />
-                <Route path='/error500' component={HTTPCode500} />
-                {/* Default route on no other route found. */}
-                <Route component={HTTPCode404} />
-                </Switch>
-            </Layout>
-      </div>
-    );
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="App">
+                    {/* Excellent answer on rendering a / route */}
+                    {/* https://stackoverflow.com/a/44292410/9505707 */}
+                    <Layout>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/jobListingsSearch' component={JobListingsSearchPage} />
+                        <Route
+                            path='/jobsListingsResults'
+                            render={((props) => <CareerHubData {...props} />)}
+                        />
+                        {/*  Error routes */}
+                        <Route path='/error400' component={HTTPCode400} />
+                        <Route path='/error401' component={HTTPCode401} />
+                        <Route path='/error403' component={HTTPCode403} />
+                        <Route path='/error404' component={HTTPCode404} />
+                        <Route path='/error500' component={HTTPCode500} />
+                    </Layout>
+                </div>
+            </BrowserRouter>
+      );
   }
 }
 
