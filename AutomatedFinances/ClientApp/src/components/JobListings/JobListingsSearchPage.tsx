@@ -1,22 +1,50 @@
 ﻿import * as React from 'react';
-import { useState, useEffect, useMemo } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import Wrapper from '../CommonStyledComponents/Wrapper';
+import { Redirect } from 'react-router-dom'
+import { isNullOrUndefined } from 'util';
 import SearchBar from '../CommonStyledComponents/SearchBar';
-import * as LoadingSpinners from '../CommonStyledComponents/LoadingSpinner';
+import DateFilter from '../CommonStyledComponents/DateFilter';
+import Wrapper from '../CommonStyledComponents/Wrapper';
 
-const HeroContainer = styled.div`
-        padding-top: 4rem; 
+/////////////////////////////////////////////////////
+// Page grid layout
+/////////////////////////////////////////////////////
+
+const TwoColPageGrid = styled.div`
+        width: 100%;
+        height: auto;
+    /* grid config */            
+        display: grid;
+        grid-template-columns: [search-col] 50% [review-and-saved-col] 50%;
+        grid-template-rows: [header] 20% [main] 60% [misc-footer] 20%;
+        column-gap: 55px;
+        row-gap: 12px;
+     /* center align and left justify content of the grid by default. */
+        justify-content: start;
+        align-content: center;
+     /* paddings and margins */
+        margin: 0;
+        padding: 0;
         padding-bottom: 4rem;
-        margin-right: 200px;
-        margin-left: 200px;
     `;
 
-const Container = styled.div`
-        padding-top: 4rem;    
+/////////////////////////////////////////////////////
+
+
+const HeroContainer = styled.div`
+    /* configure position in parent grid. */
+        grid-column: search-col / search-col ;
+        grid-row: header / main;
+    /* spacing. */
+        padding-top: 4rem; 
         padding-bottom: 4rem;
-        margin-right: 200px;
-        margin-left: 200px;
+    `;
+
+const MiscContainer = styled.div`
+    /* configure position in parent grid. */
+        grid-column: search-col / search-col;
+        grid-row: misc-footer / misc-footer ;
     `;
 
 const HeaderVisualBlockContainer = styled.div`
@@ -59,7 +87,7 @@ const SecondaryContentGrid = styled.div`
     `;
 
 const TrendingCardNegativeSpace = styled.div`
-        grid-area: 1 / 1 / 1 / 1;
+        grid-area: 1 / 1 / 2 / 2;
         border: 0.5px solid #000;
         box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
             0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -85,44 +113,60 @@ const InnerContentContainer = styled.div`
     margin: 10px;
     `;
 
+function GetYYYMMDD(d: Date): string {
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0];
+}
+
 export default function JobListingsSearchPage(): JSX.Element {
-    const [input, setInput] = useState('');
+    const [searchTerms, setSearchTerms] = useState("");
+    const [lowerDateFilter, setLowerDateFilter] = useState(new Date(Date.now()));
+    const [upperDateFilter, setUpperDateFilter] = useState(new Date(Date.now()));
+
+    if (!isNullOrUndefined(searchTerms) && searchTerms !== "") {
+        return (
+            <Redirect 
+                push
+                to={{
+                    pathname: '/jobsListingsResults',
+                    state: {
+                        SearchTerms: searchTerms,
+                        LowerDateFilter: GetYYYMMDD(lowerDateFilter),
+                        UpperDateFilter: GetYYYMMDD(upperDateFilter)
+                    }
+                }}
+            />
+        );
+    } 
 
     return (
         <Wrapper>
-            <HeroContainer>
-                <HeaderVisualBlockContainer>
-                    <HeroHeaderTitle>Search Job Listings</HeroHeaderTitle>
-                    <HeroDescription>
-                        Search multiple jobs sites, and listings, all in one location.
-                        Enter multiple search terms and see the results!
-                    </HeroDescription>
-                        <SearchBar term={input} updateTerm={setInput} />
-                        <p>Add some other search components here...</p>
-                </HeaderVisualBlockContainer>
-            </HeroContainer>
-            <Container>
-                <SecondaryContentGrid>
-                    <TrendingCardNegativeSpace>
-                        <InnerContentContainer>
-                            <SecondaryHeaders>Trending</SecondaryHeaders>
-                            <p>#1 TOPIC</p>
-                            <p>#2 TOPIC</p>
-                            <p>#3 TOPIC</p>
-                            <p>#4 TOPIC</p>
-                        </InnerContentContainer>
-                    </TrendingCardNegativeSpace>
-                    <ViewSavedCard>
-                        <InnerContentContainer>
-                            <SecondaryHeaders>View Saved</SecondaryHeaders>
-                            <p>Last saved item...</p>
-                            <p>Last saved item...</p>
-                            <p>Last saved item...</p>
-                            <p>Last saved item...</p>
-                        </InnerContentContainer>
-                    </ViewSavedCard>
-                </SecondaryContentGrid>
-            </Container>
+            <TwoColPageGrid className="two-col-grid">
+                <HeroContainer className="hero-container">
+                    <HeaderVisualBlockContainer>
+                        <HeroHeaderTitle>Search Job Listings</HeroHeaderTitle>
+                        <HeroDescription>
+                            Search multiple jobs sites, and listings, all in one location.
+                            Enter multiple search terms and see the results!
+                        </HeroDescription>
+                        <SearchBar searchCallback={setSearchTerms} />
+                        <br />
+                        <DateFilter lowerDateCallBack={setLowerDateFilter} upperDateCallBack={setUpperDateFilter} />
+                    </HeaderVisualBlockContainer>
+                </HeroContainer>
+                <MiscContainer>
+                    <SecondaryContentGrid>
+                        {/*<TrendingCardNegativeSpace>
+                            <InnerContentContainer>
+                                <SecondaryHeaders>Trending</SecondaryHeaders>
+                                <p>#1 TOPIC</p>
+                                <p>#2 TOPIC</p>
+                                <p>#3 TOPIC</p>
+                                <p>#4 TOPIC</p>
+                            </InnerContentContainer>
+                        </TrendingCardNegativeSpace>*/}
+                    </SecondaryContentGrid>
+                </MiscContainer>
+            </TwoColPageGrid>
         </Wrapper>
     );
 }

@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from 'react';
 import MidTableDefault from '../../Tables/MidTableDefault';
 import { TableLoadingPlaceHolder } from '../../Tables/CommonStyledComponents/ModernBlackAndWhiteTable';
 import * as Ajax from '../../AJAX/AJAX';
+import { RouteComponentProps } from 'react-router-dom';
 
 type UTSJobListing = {
     PositionTitle: string;
@@ -67,13 +68,20 @@ function CustomIncludes_override(rows: Array<any>, ids: Array<number>, filterVal
 CustomIncludes_override.autoRemove = (val: any) => !val
 
 
-export default function CareerHubData() {
+export default function CareerHubData(props: any): JSX.Element {
     const [isLoading, setLoading] = useState(true);
     const [dataList, setDataList] = useState<UTSJobListing[]>([]);
     const loadingMsg = "Loading the Careerhub data...";
-
+    const stateData = props.location.state;
+    
     async function populateCareerHubData() {
-        const data = await Ajax.fetchResource('/CareerHub?searchTerm=software', { method: 'GET' });
+        let lowerDateFilter = stateData.LowerDateFilter ? stateData.LowerDateFilter : "";
+        let upperDateFilter = stateData.UpperDateFilter ? stateData.UpperDateFilter : "";
+        var url = '/CareerHub?lowerDateFilter=' + lowerDateFilter + "&upperDateFilter=" + upperDateFilter;
+        let data = await Ajax.fetchResource(url, {
+            method: 'POST',
+            data: stateData.SearchTerms.split(" ")
+        });
         setDataList(data);
         setLoading(false);
     }

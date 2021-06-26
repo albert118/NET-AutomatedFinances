@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -18,18 +19,18 @@ namespace EmploymentLibrary
         }
 
         [HttpPost]
-        public List<UTSJobListingsDTO> Post([FromBody] List<string> searchTerms)
+        public List<UTSJobListingsDTO> Post([FromBody] List<string> searchTerms, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
         {
             _logger.LogInformation("[POST]    Retrieved {0} record from {1} with search terms {2} ", searchTerms.Count, typeof(ICareerHubService).FullName, string.Join(",", searchTerms));
-            var retVal = _careerHubService.BulkSearcher(searchTerms);
+            var retVal = _careerHubService.BulkSearcher(searchTerms, lowerDateFilter, upperDateFilter);
             return retVal;
         }
 
         [HttpGet]
-        public List<UTSJobListingsDTO> Get(string searchTerm)
+        public List<UTSJobListingsDTO> Get(string searchTerm, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
         {
             _logger.LogInformation("[GET]    Retrieved 1 record from {0} with search term {1} ", typeof(ICareerHubService).FullName, searchTerm);
-            var retVal = _careerHubService.QuickSearcher(searchTerm);
+            var retVal = _careerHubService.QuickSearcher(searchTerm, lowerDateFilter, upperDateFilter);
             return retVal;
         }
     }
