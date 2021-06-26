@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button} from 'reactstrap';
 import styled from 'styled-components'
 import BetterLink from '../CommonStyledComponents/BetterLink';
+import BetterButton from '../CommonStyledComponents/BetterButton';
 
 import '../../styles/NavMenu.css';
 
@@ -71,6 +71,12 @@ const StyledNavbarbrand = styled.div`
         place-items: center;
     `;
 
+// idk why this doesnt work... ABORTUS
+const NavTextSpaced = styled(NavTextLink)`
+        padding: 0.25em 1em;
+        margin: 10px !important;
+    `;
+
 const StyledLogo = styled.svg`
         min-width: 55px;
         max-width: 55px;
@@ -89,21 +95,6 @@ const StyledNavText = styled.li`
         line-height: 1;
         place-content: center;
         place-items: center;
-    `;
-
-const StyledButton = styled(Button)`
-        display: inline-block;
-        background: black;
-        padding: 0.25em 1em;
-        margin-right: 7px;
-        margin-left: 7px;
-        border-radius: 20px;
-        place-content: center;
-        place-items: center;
-
-        &:hover {
-            color: ${props => props.hoverColor ? props.hoverColor : "var(--gold-metallic)"};
-        }
     `;
 
 function NavbarBrand(props) {
@@ -142,29 +133,29 @@ function NavTextLink(props) {
     }
 
     return (
-        <StyledButton>
+        <BetterButton curveCorners={true} >
             <BetterLink Link={props.Link} LinkText={props.LinkText} />
-        </StyledButton>
-    )
+        </BetterButton>
+    );
 }
 
 function SpacedNavOptions() {
     return (
         <StyledSpacer>
-            <NavTextLink Link='/' LinkText="Home" />
-            <NavTextLink Link='/About' LinkText="About" />
-            <NavTextLink Link='/Contact' LinkText="Contact" />
+            <NavTextSpaced Link='/' LinkText="Home" />
+            <NavTextSpaced Link='/About' LinkText="About" />
+            <NavTextSpaced Link='/Contact' LinkText="Contact" />
         </StyledSpacer>
-    )
+    );
 }
 
 function SpacedNavUtilities() {
     return (
         <StyledUtils>
-            <NavTextLink Link='/jobListingsSearch' LinkText="Search Jobs" IsButton={true} />
-            <NavTextLink Link='/utsCareerHub' LinkText="UTS CareerHub Job Postings" IsButton={true} />
+            <NavTextSpaced Link='/jobListingsSearch' LinkText="Search Jobs" IsButton={true} />
+            <NavTextSpaced Link='/utsCareerHub' LinkText="UTS CareerHub Job Postings" IsButton={true} />
         </StyledUtils>
-    )
+    );
 }
 
 export default function NavMenu() {

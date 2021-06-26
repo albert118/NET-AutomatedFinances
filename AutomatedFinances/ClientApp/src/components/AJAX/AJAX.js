@@ -1,4 +1,7 @@
 // API source to request from, root url
+
+import { User } from "oidc-client";
+
 //const APIRootPath = "http://localhost:8000";
 const APIRootPath = "";
 
@@ -51,41 +54,44 @@ export const fetchResource = (path, userOptions = {}) => {
     // data added after method check
     var defaultOptions = {};
     var defaultHeaders = {};
+    var body = null;
 
     //////////////////////////////
     // ENABLE ONCE ACCOUNTS ADDED
     //////////////////////////////
-    //if ("method" in userOptions) {
-    //    if (userOptions.method === "POST") {
-    //        // default query options for the backend PAPI.
-    //        //defaultOptions = {
-    //        //    mode: "cors",
-    //        //    credentials: "include",
-    //        //};
-    //
-    //        defaultHeaders = {
-    //            'Content-Type': 'application/json;charset=utf-8',
-    //            'Access-Control-Allow-Origin': '*',
-    //            // CSRF Token for backend requests...helper fetch function grabs it.
-    //            //'x-csrftoken': getCsrfToken(APIRootPath),
-    //        };
-    //    } else if (userOptions.method === "GET") {
-    //        // default query options for the backend PAPI.
-    //        //defaultOptions = {
-    //        //    credentials: "include",
-    //        //};
-    //
-    //        defaultHeaders = {
-    //            'Content-Type': 'application/json;charset=utf-8',
-    //        };
-    //    }
-    //} else {
-    //    throw new APIError(
-    //        `Request failed. No method set!!`,
-    //        null,
-    //        "NO METHOD SET."
-    //    );
-    //}
+    if ("method" in userOptions) {
+        if (userOptions.method === "POST") {
+            // default query options for the backend PAPI.
+            //defaultOptions = {
+            //    mode: "cors",
+            //    credentials: "include",
+            //};
+    
+            defaultHeaders = {
+                'Content-Type': 'application/json;charset=utf-8',
+                'Access-Control-Allow-Origin': '*',
+                // CSRF Token for backend requests...helper fetch function grabs it.
+                //'x-csrftoken': getCsrfToken(APIRootPath),
+            };
+            body = JSON.stringify(userOptions.data);
+
+        } else if (userOptions.method === "GET") {
+            // default query options for the backend PAPI.
+            //defaultOptions = {
+            //    credentials: "include",
+            //};
+    
+            defaultHeaders = {
+                'Content-Type': 'application/json;charset=utf-8',
+            };
+        }
+    } else {
+        throw new APIError(
+            `Request failed. No method set!!`,
+            null,
+            "NO METHOD SET."
+        );
+    }
     
     const options = {
         // union-combine the options,
@@ -96,6 +102,7 @@ export const fetchResource = (path, userOptions = {}) => {
             ...defaultHeaders,
             ...userOptions.headers,
         },
+        body: body,
     };
 
     // stringify the data to upload...

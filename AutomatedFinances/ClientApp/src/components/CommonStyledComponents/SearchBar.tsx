@@ -1,16 +1,29 @@
 import * as React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import BetterButton from './BetterButton';
+
 import "../../styles/SearchListings.css";
 
-const MAX_SEARCH_SIZE_CHAR_LEN = 2048
+const MAX_SEARCH_SIZE_CHAR_LEN = 1024
+const FILTER_RETRY_DELAY_MS = 500;
 
 const SearchBarFlexBox = styled.div`
+    /* flex the search content. */
         display: flex;
-        padding: 5px 8px 0 16px;
+        padding: 0 0 0 16px;
         padding-left: 14px;
         width: 100%;
+
+        background: var(--sky-blue-crayola, black);
+    /* round the left borders, square the rights. */
+        border-radius: 10px 0 0 10px;
+    /* Apply a hover effect to help focus the user. */
+        &:hover {
+            background: linear-gradient(var(--cultured, white), var(--gold-metallic, black));
+        }
     `;
 
 const SearchBarHeroItem = styled.div`
@@ -33,12 +46,30 @@ const StyledInput = styled.input`
         border: none;
         padding: 0;
         margin: -5px 0 0 0;
+        padding-right: 5px;
     `;
 
+const StyledSearchText = styled.div`
+        background: black;
+        border: none;
+    /* grow with the space. */
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    /* spacing. */
+        padding: 7px;
+        padding-left: 24px;
+        padding-right: 13px;
+        min-height: 100%;
+        text-align: center;
+    `;
 
-export default function SearchBar(search: { term: string, updateTerm: Function }): JSX.Element {
+export default function SearchBar(props: { searchCallback: Function }): JSX.Element {
+    const [input, setInput] = useState("");
+
     return (
-        <div className="searchBar">
+        <div style={{ width: "100%" }} className="search-bar">
             <SearchBarFlexBox className="searchBar-flexbox">
                 <SearchBarHeroItem className="searchBar-flexbox">
                     <FontAwesomeIcon color="black" icon={faSearch} flip="horizontal" inverse />
@@ -54,12 +85,15 @@ export default function SearchBar(search: { term: string, updateTerm: Function }
                         spellCheck="false"
                         title="Search"
                         maxLength={MAX_SEARCH_SIZE_CHAR_LEN}
-                        value={search.term}
-                        onChange={(e) => search.updateTerm(e.target.value)}
+                        value={input}
+                        onChange={e => { setInput(e.target.value) }}
                     />
                 </StyledSearchArea>
-                <p className="search-text">Search</p>
+                <BetterButton className="search-bar-submit btn-search" onClick={() => props.searchCallback(input)}>
+                    <StyledSearchText>Search</StyledSearchText>
+                </BetterButton>
             </SearchBarFlexBox>
         </div>
     );
 }
+
