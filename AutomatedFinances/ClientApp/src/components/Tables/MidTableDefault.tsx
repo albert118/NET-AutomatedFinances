@@ -37,7 +37,7 @@ function DefaultColumnFilter({ column: { filterValue, preFilteredRows, setFilter
     const onChange = useAsyncDebounce((value: any) => { setFilter(value || defaultVal) }, FILTER_RETRY_DELAY_MS)
     
     return (
-        <input
+        <input style={{ background: "white"}}
             value={value || ''}
             onChange={e => {
                 setValue(e.target.value);
