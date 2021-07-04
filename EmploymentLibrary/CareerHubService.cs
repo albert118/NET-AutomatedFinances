@@ -8,33 +8,12 @@ using System.Text.RegularExpressions;
 
 namespace EmploymentLibrary
 {
-    public class UTSJobListingsDTO
+    public class UTSJobListingsDTO : DTOBaseClass
     {
-        public string PositionTitle { get; set; }
-        public string DetailURL { get; set; }
-        public string CompanyURL { get; set; }
-        public string Company { get; set; }
-        public string Location { get; set; }
-        public string ClosingDate { get; set; }
-        public string Summary { get; set; }
     }
 
-    public interface ICareerHubService
+    public class CareerHubService : EmploymentBaseClass, IEmploymentService
     {
-        List<UTSJobListingsDTO> QuickSearcher(string searchTerm, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null);
-
-        /// <summary>
-        /// Run a search query into the UTS careerhub site.
-        /// </summary>
-        /// <param name="searchTerms"></param>
-        /// <returns>A list of non-duplicated query results 'potential job listings' as DTOs</returns>
-        List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null);
-    }
-
-    public class CareerHubService : ICareerHubService
-    {
-        private HttpClient Client { get; set; }
-
         private string CookieJsessID { get; set; } = string.Empty;
         private string LoginLocation { get; set; } = string.Empty;
         private string RelayStateValue { get; set; } = string.Empty;
@@ -43,15 +22,14 @@ namespace EmploymentLibrary
         private string SAMLResponseVal { get; set; } = string.Empty;
         private string AspNETSessionID { get; set; } = string.Empty;
 
-        private CookieContainer CookieContainer { get; set; }
         private HttpClient SamlRequestClient { get { return new HttpClient(); } }
         private HttpClient SamlPostClient 
         { 
             get 
             {
-                if (CookieContainer == null) CookieContainer = new CookieContainer();
+                if (GetCookieContainer() == null) SetCookieContainer(new CookieContainer());
 
-                var CookieHandler = new HttpClientHandler() { CookieContainer = CookieContainer };
+                var CookieHandler = new HttpClientHandler() { CookieContainer = GetCookieContainer() };
                 var samlPostClient = HttpClientFactory.Create(CookieHandler);
                 samlPostClient.DefaultRequestHeaders.Host = ExternalServiceEndPoints.UTSServices.SSO_SAML_POST_HOST;
                 samlPostClient.DefaultRequestHeaders.Referrer = new Uri(ExternalServiceEndPoints.UTSServices.SAML_REQUEST_REDIRECT);
@@ -64,8 +42,8 @@ namespace EmploymentLibrary
         {
             get
             {
-                if (CookieContainer == null) CookieContainer = new CookieContainer();
-                var CookieHandler = new HttpClientHandler() { CookieContainer = CookieContainer };
+                if (GetCookieContainer() == null) SetCookieContainer(new CookieContainer());
+                var CookieHandler = new HttpClientHandler() { CookieContainer = GetCookieContainer() };
                 var credentialsClient = HttpClientFactory.Create(CookieHandler);
                 credentialsClient.DefaultRequestHeaders.Host = ExternalServiceEndPoints.UTSServices.SSO_SAML_POST_HOST;
                 credentialsClient.DefaultRequestHeaders.Add("Origin", ExternalServiceEndPoints.UTSServices.STUDENTS_SIGN_ON_ORIGIN_URL); 
@@ -79,11 +57,11 @@ namespace EmploymentLibrary
         {
             get
             {
-                if (CookieContainer == null) CookieContainer = new CookieContainer();
-                var CookieHandler = new HttpClientHandler() { CookieContainer = CookieContainer };
-                CookieHandler.AllowAutoRedirect = true;
+                if (GetCookieContainer() == null) SetCookieContainer(new CookieContainer());
+                var CookieHandler = new HttpClientHandler() { CookieContainer = GetCookieContainer() };
+                CookieHandler.AllowAutoRedirect = false;
                 var credentialsClient = HttpClientFactory.Create(CookieHandler);
-
+                
                 credentialsClient.DefaultRequestHeaders.Host = ExternalServiceEndPoints.UTSServices.HOST;
                 credentialsClient.DefaultRequestHeaders.Add("Origin", ExternalServiceEndPoints.UTSServices.STUDENTS_SIGN_ON_ORIGIN_URL);
                 credentialsClient.DefaultRequestHeaders.Add("Referer", ExternalServiceEndPoints.UTSServices.STUDENTS_SIGN_ON_ORIGIN_URL + "/");
@@ -95,8 +73,8 @@ namespace EmploymentLibrary
         {
             get
             {
-                if (CookieContainer == null) CookieContainer = new CookieContainer();
-                var CookieHandler = new HttpClientHandler() { CookieContainer = CookieContainer };
+                if (GetCookieContainer() == null) SetCookieContainer(new CookieContainer());
+                var CookieHandler = new HttpClientHandler() { CookieContainer = GetCookieContainer() };
                 CookieHandler.AllowAutoRedirect = false;
                 var credentialsClient = HttpClientFactory.Create(CookieHandler);
 
@@ -114,18 +92,16 @@ namespace EmploymentLibrary
         private static readonly int SAML_VAL_LEN = 2732;
         private static readonly int RELAY_VAL_LEN = 176;
         private static readonly int JSESSION_COOKIE_LENGTH = 10;
-        private static readonly int SAML_RESPONSE_VAL_LEN = 9744; // 9740/9744/9748 sometimes the val length... Never figured out why
-
-        private Dictionary<string, List<UTSJobListingsDTO>> JobListings_cache { get; set; }
-
+        
         public CareerHubService()
         {
-            var client = new HttpClient();
-            client.BaseAddress = new Uri(ExternalServiceEndPoints.UTSServices.QUERY_URL);
-            this.Client = client;
-
-            // init the cache
-            JobListings_cache = new Dictionary<string, List<UTSJobListingsDTO>>();
+            var client = new HttpClient
+            {
+                BaseAddress = new Uri(ExternalServiceEndPoints.UTSServices.QUERY_URL)
+            };
+            
+            SetClient(client);
+            CacheInitialiser();
 
             // handle a new login
             NewLoginRequest();
@@ -135,55 +111,14 @@ namespace EmploymentLibrary
             PostSAMLResponse();
         }
 
-        public List<UTSJobListingsDTO> QuickSearcher(string searchTerm, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
-        {
-            if (string.IsNullOrEmpty(searchTerm)) return new List<UTSJobListingsDTO>(); ;
-
-            if (!JobListings_cache.TryGetValue(searchTerm, out _))
-            {
-                JobListings_cache[searchTerm] = new CareerHubService().BulkSearcher(new List<string>() { searchTerm }, lowerDateFilter, upperDateFilter);
-            }
-
-            return JobListings_cache[searchTerm];
-        }
-
-        public List<UTSJobListingsDTO> BulkSearcher(List<string> searchTerms, DateTime? lowerDateFilter = null, DateTime? upperDateFilter = null)
-        {
-            var retData = new List<UTSJobListingsDTO>();
-            
-            foreach (var term in searchTerms)
-            {
-                var rawData = SearchQueryWrapper(term);
-                if (!string.IsNullOrEmpty(rawData))
-                {
-                    var dtos = MapSerializedDataToDTO(rawData).Where(dto => !retData.Contains(dto));
-                    retData.AddRange(dtos);
-                }
-            }
-
-            if (lowerDateFilter.HasValue)
-            {
-                // TODO atm this will always return all data, as DTOs are retrieved directly (no db storage).
-                retData = retData.Where(d => true).ToList();
-            }
-
-            if (upperDateFilter.HasValue)
-            {
-                // TODO this will be from a database eventually. So the service wont have to do a string comp once that's implemented.
-                retData = retData.Where(d => DateTime.Parse(d.ClosingDate) <= upperDateFilter.Value).ToList();
-            }
-
-            return retData.ToList();
-        }
-
         /// <summary>
         /// Query careerhub for the given search term. 
         /// </summary>
         /// <param name="searchTerm">Value to search for.</param>
         /// <returns>Returns query results as string.</returns>
-        private string SearchQueryWrapper(string searchTerm)
+        public override List<string> SearchQueryWrapper(string searchTerm)
         {
-            var retVal = string.Empty;
+            var searchResponses = new List<string>();
 
             // utilises the asp session ID from the login process to make requests. As well as the CHAUTH (login/logout) cookies.
             var searchBroker = new Broker(SearchBroker);
@@ -198,12 +133,8 @@ namespace EmploymentLibrary
             var vals = new List<string>() { searchTerm, typeOfWorkChooseAll, location, country, residency, takeAllWithNoPagination };
             var queryStringParams_dict = keys.Zip(vals, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
 
-            var searchResponse = searchBroker.GetRequestAsync<string>(ExternalServiceEndPoints.UTSServices.QUERY_URL, queryParams: queryStringParams_dict);
-
-            if (searchResponse != null && searchResponse.Length > 0)
-                return searchResponse;
-
-            return retVal;
+            searchResponses.Add(searchBroker.GetRequestAsync<string>(ExternalServiceEndPoints.UTSServices.QUERY_URL, queryParams: queryStringParams_dict));
+            return searchResponses;
         }
 
         /// <summary>
@@ -211,7 +142,7 @@ namespace EmploymentLibrary
         /// </summary>
         /// <param name="htmlResponse">list queryResults, a raw list of query results.</param>
         /// <returns></returns>
-        private HashSet<UTSJobListingsDTO> MapSerializedDataToDTO(string htmlResponse)
+        public override HashSet<IEmploymentDTO> MapSerializedDataToDTO(IEnumerable<string> htmlResponse)
         {
             // 1 find the class list-group job-list
             //  list-group-items contain vals shown in oppertunityDefault_dict
@@ -219,13 +150,13 @@ namespace EmploymentLibrary
             //  2a parse the vars, especially date, to get correct data typing
             // 3 return a dictionary of these op's, key'd by their position title str
 
-            var dtos = new HashSet<UTSJobListingsDTO>();
-
-            var htmlResponse_list = Regex.Split(htmlResponse, "<|>").ToList().ConvertAll(s => s.ToLower());
+            var dtos = new HashSet<IEmploymentDTO>();
+            var _htmlResponse = htmlResponse.First();
+            var htmlResponse_list = Regex.Split(_htmlResponse, "<|>").ToList().ConvertAll(s => s.ToLower());
 
             int i = 0;
             int k = 0;
-            var n = htmlResponse_list.Count();
+            var n = htmlResponse_list.Count;
             var checkState = new List<string>() { "list-group-item-heading", "h5", "em", "closes", "job-list-summary" };
             var currJobListing = new UTSJobListingsDTO();
 
@@ -493,15 +424,26 @@ namespace EmploymentLibrary
             ShibIDPsessionSSCookie_keyVal = Regex.Replace(Regex.Replace(cookies.ElementAt(0), "shib_idp_session_ss=", ""), ";Path=/idp;HttpOnly", "");
             ShibIDPsessionCookie_KeyVal = Regex.Replace(Regex.Replace(cookies.ElementAt(1), "shib_idp_session=", ""), ";Path=/idp;HttpOnly", "");
 
+            GetSamlResponseValue(loginForm);
+        }
+
+        private void GetSamlResponseValue(string loginForm)
+        {
             // the loginForm we retrieved contains the SAMLResponse value, this is the last value to retrieve in this step.
             var stringToMatch = "name=\"SAMLResponse\" value=\"";
             var match = Regex.Match(loginForm, stringToMatch);
-            SAMLResponseVal = loginForm.Substring(match.Index + stringToMatch.Length, SAML_RESPONSE_VAL_LEN);
-            
-            if (SAMLResponseVal.Length != SAML_RESPONSE_VAL_LEN)
-            {
-                throw new Exception("SAML response value incorrectly identified. Contiguous state malformed. Please check that the SAML_RESPONSE_VAL_LEN is correct and that the network connection is stable.");
-            }
+            var endOfSamlTokenPattern = "==\"/>";
+            var matchesForEndPattern = Regex.Matches(loginForm, endOfSamlTokenPattern);
+            var correctMatch = matchesForEndPattern.FirstOrDefault(x => x.Index > match.Index);
+            var endIdx = correctMatch == null ? loginForm.Length - 1 : correctMatch.Index;
+
+            var startIdx = match.Index + stringToMatch.Length;
+            var lengthToCut = endIdx - match.Index + endOfSamlTokenPattern.Length;
+            var _SAMLResponseVal = loginForm.Substring(startIdx, lengthToCut).Trim();
+            var extraCrapToRemove = "\">";
+            SAMLResponseVal = _SAMLResponseVal.Substring(0, _SAMLResponseVal.Length - 1 - extraCrapToRemove.Length);
+
+            if (SAMLResponseVal.Length == 0) throw new Exception("SAML response value incorrectly identified. Contiguous state malformed. Please check that the SAML_RESPONSE_VAL_LEN is correct and that the network connection is stable.");
         }
 
         /// <summary>
@@ -513,14 +455,14 @@ namespace EmploymentLibrary
             // STEP 5 SAML response to SP (Service Provider: UTS Careerhub)
             //  POST to the SAML SSO location with no cookies. For UTS, we include
             //  the RelayState value and the SAML Response values from previous steps.
-
+            
             var samlResponseBroker = new Broker(SamlPostResponseClient);
 
             var keys = new List<string>() { "RelayState", "SAMLResponse" };
             var vals = new List<string>() { RelayStateValue, SAMLResponseVal };
             var samlFormData_dict = keys.Zip(vals, (k, v) => new { k, v }).ToDictionary(x => x.k, x => x.v);
 
-            var samlResponseForm = samlResponseBroker.PostFormRequestAsync(ExternalServiceEndPoints.UTSServices.SSO_SAML_RESPONSE_POST, data: samlFormData_dict).Result;
+            _ = samlResponseBroker.PostFormRequestAsync(ExternalServiceEndPoints.UTSServices.SSO_SAML_RESPONSE_POST, data: samlFormData_dict).Result;
             if (!samlResponseBroker.GetResponseHeaders().TryGetValues("Set-Cookie", out var cookies))
             {
                 throw new Exception("Unable to ascertain ASP .NET session ID cookie during login process.");
