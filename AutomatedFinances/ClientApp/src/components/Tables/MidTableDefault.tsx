@@ -62,7 +62,8 @@ export function SelectColumnFilter({ column: { filterValue, preFilteredRows, set
             options.add(row[id].values)
         });
 
-        return [...options.values()];
+        // sort results alphabetically
+        return [...options.values()].sort();
     }, [id, preFilteredRows]);
 
     return (

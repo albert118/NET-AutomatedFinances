@@ -91,7 +91,7 @@ namespace CommonLibrary.RequestBrokerService
             return response;
         }
 
-        public string GetRequestAsync<T>(string url, Dictionary<string, string> queryParams)
+        public string GetRequestAsync<T>(string url, Dictionary<string, string> queryParams, bool addSlash = true)
         {
             var pList = new List<string>();
 
@@ -100,7 +100,7 @@ namespace CommonLibrary.RequestBrokerService
                 pList.Add(k + "=" + queryParams[k]);
             }
 
-            var t = Task.Run(() => GetRequestWithParams<string>(url, string.Join("&", pList)));
+            var t = Task.Run(() => GetRequestWithParams<string>(url, string.Join("&", pList), addSlash: addSlash));
             t.Wait();
             var response = t.Result;
             return response;

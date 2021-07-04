@@ -22,6 +22,7 @@
             public static readonly string QUERY_URL = "https://www.seek.com.au/api/chalice-search/search";
             public static readonly string REFERER = string.Empty;
             public static readonly string HOST = string.Empty;
+            public static readonly string JOB_URL_PREFIX = "seek.com.au/job/"; // prefix to the job ID
         }
     }
 }

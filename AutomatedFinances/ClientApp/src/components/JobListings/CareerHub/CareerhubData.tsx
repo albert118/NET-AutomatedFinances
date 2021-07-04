@@ -34,7 +34,7 @@ function CustomSelectColumnFilter({ column: { filterValue, preFilteredRows, setF
             options.add(row.original.company.trim())
         });
 
-        return [...options.values()];
+        return [...options.values()].sort();
     }, preFilteredRows);
 
     return (

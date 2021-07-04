@@ -1,11 +1,12 @@
+using EmploymentLibrary;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using EmploymentLibrary;
+using System;
+using System.Collections.Generic;
 
 namespace AutomatedFinances
 {
@@ -21,9 +22,20 @@ namespace AutomatedFinances
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ICareerHubService, CareerHubService>();
+            services.AddTransient<CareerHubService>();
+            services.AddTransient<SeekService>();
+
+            services.AddTransient<EmplyomentServiceResolver>(serviceProvider => key =>
+            {
+                return key switch
+                {
+                    (int)EmploymentDBs.Seek => serviceProvider.GetService<SeekService>(),
+                    (int)EmploymentDBs.Careerhub => serviceProvider.GetService<CareerHubService>(),
+                    _ => throw new KeyNotFoundException(),
+                };
+            });
+
             services.AddControllersWithViews();
-            //services.AddHttpClient<CareerHubService>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
