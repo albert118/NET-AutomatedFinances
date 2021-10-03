@@ -8,4 +8,13 @@
     <Folder Include="Data\ExpendituresDb\EntityConfiguration\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj" />
+    <ProjectReference Include="..\AutomatedFinances.BusinessCore\AutomatedFinances.BusinessCore.csproj" />
+  </ItemGroup>
+
 </Project>
