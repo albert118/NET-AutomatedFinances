@@ -1,11 +1,14 @@
-﻿namespace AutomatedFinances.BusinessCore.Entities
+﻿using AutomatedFinances.BusinessCore.Enumerations;
+
+namespace AutomatedFinances.BusinessCore.Entities
 {
     public class PaymentMethod
     {
         public int Id { get; set; }
 
+        // biz?
         public string Source { get; set; }
 
-        public string MethodType { get; set; }
+        public PaymentType Method { get; set; }
     }
 }
