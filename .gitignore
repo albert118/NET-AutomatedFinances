@@ -1,3 +1,9 @@
+# Python stuff from old projects
+Lib/
+libs/
+Scripts/
+
+
 # misc
 .DS_Store
 .env.local
