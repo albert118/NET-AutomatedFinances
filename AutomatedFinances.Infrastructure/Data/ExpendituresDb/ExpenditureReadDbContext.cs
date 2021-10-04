@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace AutomatedFinances.Infrastructure.Data.ExpendituresDb
 {
-    internal class ExpenditureReadDbContext : ExpenditureWriteDbContext
+    internal sealed class ExpenditureReadDbContext : ExpenditureWriteDbContext
     {
         public ExpenditureReadDbContext(
             DbContextOptions<ExpenditureReadDbContext> options) : base(options)

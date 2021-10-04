@@ -3,7 +3,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AutomatedFinances.Infrastructure.Data
+namespace AutomatedFinances.Infrastructure
 {
     internal abstract class AsyncDbContext : DbContext
     {
@@ -11,21 +11,20 @@ namespace AutomatedFinances.Infrastructure.Data
 
         public override int SaveChanges(bool _) => SaveChanges();
 
-        public override int SaveChanges() => throw new NotSupportedException($"Please use {nameof(SaveChangesAsync)}()."
-            + "Async is da bossssss. Don't be syncro!");
+        public override int SaveChanges() => throw new NotSupportedException("Async is preffered over sync calls.");
 
         public override Task<int> SaveChangesAsync(CancellationToken ct = default) => SaveChangesAsync(true, ct);
-
 
         public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken ct = default)
         {
             if (ct == default)
             {
-                throw new InvalidOperationException("Please pass a real cancellation token to SaveChangesAsync() so "
-                    + "that any uneeded queries can be stopped early! Otherwise async is not being used correctly.";
+                throw new InvalidOperationException("A real cancellation token is need to call SaveChangesAsync() "
+                    + "so that uneeded or cancelled operations can be terminated mid-save.");
             }
 
             return await base.SaveChangesAsync(acceptAllChangesOnSuccess, ct);
+
         }
     }
 }

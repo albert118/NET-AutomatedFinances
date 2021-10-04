@@ -1,9 +1,13 @@
 ﻿namespace AutomatedFinances.Infrastructure
 {
-    public class ServerSettings
+    internal sealed class ServerSettings
     {
-        public string SqlServerPath { get; set; }
+        public string IridiumServerPath { get; set; }
 
-        public string SqlPassword { get; set; }
+        public string AutomedFinancesDbName { get; set; }
+
+        public string AutomedFinancesDbPassword { get; set; }
+
+        public string AutomedFinancesDbUser { get; set; }
     }
 }
