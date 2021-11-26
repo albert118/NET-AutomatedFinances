@@ -1,5 +1,6 @@
 ﻿using AutomatedFinances.BusinessCore.Enumerations;
 using System;
+using System.Collections.Generic;
 
 namespace AutomatedFinances.BusinessCore.Entities
 {
@@ -13,6 +14,6 @@ namespace AutomatedFinances.BusinessCore.Entities
 
         public PaymentMethod PaymentMethod { get; set; }
 
-        public Note Note { get; set; }
+        public ICollection<Note> Note { get; set; } = new HashSet<Note>();
     }
 }

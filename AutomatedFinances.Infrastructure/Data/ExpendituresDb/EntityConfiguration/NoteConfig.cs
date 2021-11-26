@@ -9,6 +9,10 @@ namespace AutomatedFinances.Infrastructure.Data.ExpendituresDb.EntityConfigurati
         public void Configure(EntityTypeBuilder<Note> builder)
         {
             builder.HasKey(e => e.Id);
+            
+            // TODO: might not be needed as it's already defined in CostConfig.cs
+            builder.HasMany(e => e.Cost)
+                .WithMany(e => e.Note);
         }
     }
 }

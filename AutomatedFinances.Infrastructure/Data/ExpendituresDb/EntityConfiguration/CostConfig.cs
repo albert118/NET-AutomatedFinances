@@ -14,8 +14,8 @@ namespace AutomatedFinances.Infrastructure.Data.ExpendituresDb.EntityConfigurati
                 .HasConversion<string>();
             builder.HasOne(e => e.Business);
             builder.HasOne(e => e.PaymentMethod);
-            builder.HasOne(e => e.Note)
-                .WithMany(e => e.Costs);
+            builder.HasMany(e => e.Note)
+                .WithMany(e => e.Cost);
         }
     }
 }

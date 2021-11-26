@@ -9,7 +9,7 @@ namespace AutomatedFinances.BusinessCore.Entities
 
         public double Amount { get; set; }
 
-        public CurrencyCode CurrencyCode { get; set; }
+        public CurrencyCode CurrencyCode { get; set; } = CurrencyCode.None;
 
         public string Description { get; set; }
 
