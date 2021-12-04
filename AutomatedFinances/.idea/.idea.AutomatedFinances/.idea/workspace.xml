@@ -11,13 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/202111261314_InsertPaymentMethods.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Cost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Cost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Expenditure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Expenditure.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Note.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/CostConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/CostConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/NoteConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/NoteConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutomatedFinances.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AutomatedFinances.sln.DotSettings" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +47,7 @@
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TODO_SCOPE" value="All Places" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -144,6 +140,9 @@
       <updated>1637886715795</updated>
       <workItem from="1637886717530" duration="546000" />
       <workItem from="1637887280434" duration="6355000" />
+      <workItem from="1637893676708" duration="738000" />
+      <workItem from="1638063972515" duration="18000" />
+      <workItem from="1638588972703" duration="1470000" />
     </task>
     <servers />
   </component>
@@ -152,6 +151,18 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
