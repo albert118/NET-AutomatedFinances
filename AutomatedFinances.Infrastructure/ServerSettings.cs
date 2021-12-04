@@ -1,13 +1,15 @@
-﻿namespace AutomatedFinances.Infrastructure
+﻿#pragma warning disable 8618
+namespace AutomatedFinances.Infrastructure
 {
     internal sealed class ServerSettings
     {
-        public string IridiumServerPath { get; set; }
+        public string IridiumServerPath { get; init; }
 
-        public string AutomedFinancesDbName { get; set; }
+        public string AutomatedFinancesDbName { get; init; }
 
-        public string AutomedFinancesDbPassword { get; set; }
-
-        public string AutomedFinancesDbUser { get; set; }
+        public string AutomatedFinancesDbPassword { get; init; }
+        
+        public string AutomatedFinancesDbUser { get; init; }
     }
 }
+#pragma warning restore 8618

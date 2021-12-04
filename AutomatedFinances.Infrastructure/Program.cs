@@ -11,17 +11,17 @@ namespace AutomatedFinances.Infrastructure
     internal class Program
     {
         const string ServiceName = "automatedfinances";
+        
+        private static readonly ServerSettings ServerSettings = ConfigureServerSettings();
 
-
-        private static async Task Main(string[] args)
-        {
-            var serverSettings = new ServerSettings();
+        private static async Task Main(string[] args) {
+            
 
             // start a new container with the server settings configuration.
             Console.WriteLine("AutoFac Setup running...");
-            var container = SetupAutofacContainer(serverSettings);
+            var container = SetupAutofacContainer(ServerSettings);
             container.BeginLifetimeScope();
-
+            
             var host = CreateConsoleHost(args);
             
             Console.WriteLine("Starting the console app...");
@@ -62,25 +62,25 @@ namespace AutomatedFinances.Infrastructure
             ContainerBuilder containerBuilder, 
             ServerSettings serverSettings)
         {
-            // TODO: Move these to ServerSettings!
-            var dbSettings = new DatabaseSettings
-            {
-                Server = "192.168.133",
-                Password = "p9kNCTHi@91a",
-                Database = "AutomatedFinancesDb",
-                UserName = "sa"
-            };
-
             containerBuilder.AddEntityFramework();
 
             containerBuilder
-                .RegisterInstance(dbSettings)
+                .RegisterInstance(serverSettings.ToDataBaseSettings())
                 .AsSelf()
                 .SingleInstance();
+            
             containerBuilder
                 .RegisterType<AutomedFinancesDbContext>()
                 .As<IAutomedFinancesDbContext>()
                 .InstancePerLifetimeScope();
         }
+
+        private static ServerSettings ConfigureServerSettings() =>
+            new() {
+                IridiumServerPath = "192.168.133",
+                AutomatedFinancesDbName = "AutomatedFinancesDb",
+                AutomatedFinancesDbPassword = "p9kNCTHi@91a",
+                AutomatedFinancesDbUser = "sa"
+            };
     }
 }
