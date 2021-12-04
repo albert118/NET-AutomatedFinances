@@ -7,8 +7,8 @@ namespace AutomatedFinances.Migrations
     public static class Program
     {
         const bool RollbackLastChange = false;
-        // TODO: Move this to ServerSettings!
-        const string DbConn = "Server=192.168.1.134;Database=AutomatedFinancesDb;User Id=sa;Password=p9kNCTHi@91a;";
+        
+        private const string DbConn = "Server=192.168.1.134;Database=AutomatedFinancesDb;User Id=sa;Password=p9kNCTHi@91a;";
         
         private static void Main() {
             var serviceProvider = BuildServiceProvider(DbConn);
@@ -33,7 +33,7 @@ namespace AutomatedFinances.Migrations
                     .AddSqlServer()
                     .WithGlobalConnectionString(dbConn)
                     // Define the assembly containing the migrations
-                    // TODO: better way to register migrations that this manual shit
+                    // TODO: better way to register migrations than this manual shit
                     .ScanIn(typeof(AddFinanceDomainTables).Assembly).For.Migrations()
                     .ScanIn(typeof(InsertPaymentMethods).Assembly).For.Migrations()
                 )
