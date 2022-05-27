@@ -11,9 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +147,14 @@
       <workItem from="1638063972515" duration="18000" />
       <workItem from="1638588972703" duration="1470000" />
     </task>
+    <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
+      <created>1653643670977</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653643670977</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +178,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Remove old code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove old code" />
+    <MESSAGE value="migrations project upgraded to NET 6 and packages for ef core + tools installed" />
+    <option name="LAST_COMMIT_MESSAGE" value="migrations project upgraded to NET 6 and packages for ef core + tools installed" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
