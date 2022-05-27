@@ -11,7 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.sln.DotSettings" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/global.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +33,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IAutomedFinancesDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
@@ -53,7 +57,8 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.AutomatedFinances.Migrations">
@@ -149,6 +154,7 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,6 +171,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Remove old code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove old code" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
