@@ -26,9 +26,4 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj" />
-    <ProjectReference Include="..\AutomatedFinances.BusinessCore\AutomatedFinances.BusinessCore.csproj" />
-  </ItemGroup>
-
 </Project>
