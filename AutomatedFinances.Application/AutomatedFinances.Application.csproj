@@ -12,4 +12,8 @@
     <ProjectReference Include="..\AutomatedFinances.BusinessCore\AutomatedFinances.BusinessCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces" />
+  </ItemGroup>
+
 </Project>
