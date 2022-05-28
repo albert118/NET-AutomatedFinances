@@ -1,4 +1,9 @@
-﻿namespace AutomatedFinances.Infrastructure
+﻿using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System;
+using System.Threading.Tasks;
+
+namespace AutomatedFinances.Infrastructure
 {
     internal class Program
     {

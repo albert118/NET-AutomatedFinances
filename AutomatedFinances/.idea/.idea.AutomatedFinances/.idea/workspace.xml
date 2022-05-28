@@ -10,9 +10,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" afterDir="false" />
-    </list>
+    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +33,7 @@
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -153,7 +152,7 @@
       <workItem from="1638588972703" duration="1470000" />
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
-      <workItem from="1653707303235" duration="6444000" />
+      <workItem from="1653707303235" duration="6677000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -274,7 +273,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653715809567</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Updated Infrastructure to NET 6&#10;* installed packages for migration and EF Core work;&#10;* updated most existing packages;">
+      <created>1653716067547</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1653716067547</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Upgraded remaining packags;">
+      <created>1653716118581</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1653716118581</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Simplify Program.cs (drops comments)">
+      <created>1653716196797</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1653716196797</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +316,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_NEW_TODO" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Remove old code" />
@@ -317,7 +337,13 @@
     <MESSAGE value="NuGet updates on old monolith and drop ref to BizCore" />
     <MESSAGE value="Infrastructure drop references" />
     <MESSAGE value="Drop old content from infrastructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Drop old content from infrastructure" />
+    <MESSAGE value="Updated Infrastructure to NET 6&#10;* installed packages for migration and EF Core work;&#10;* updated most existing packages;" />
+    <MESSAGE value="Upgraded remaining packags;" />
+    <MESSAGE value="Simplify Program.cs (drops comments)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplify Program.cs (drops comments)" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
