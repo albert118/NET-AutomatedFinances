@@ -7,6 +7,6 @@ namespace AutomatedFinances.Core
     {
         public IridiumDbContext(DbContextOptions opts) : base(opts) { }
 
-        public DbSet<PaymentMethod> PaymetMethods { get; set; }
+        public DbSet<PaymentMethod>? PaymetMethods { get; set; }
     }
 }
