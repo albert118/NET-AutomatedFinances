@@ -8,6 +8,8 @@
 
     <ItemGroup>
         <Folder Include="Migrations"/>
+        <Folder Include="Entities"/>
+        <Folder Include="Enumerations"/>
     </ItemGroup>
 
     <ItemGroup>

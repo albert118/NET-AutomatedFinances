@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatedFinances.Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatedFinances.Application", "..\AutomatedFinances.Application\AutomatedFinances.Application.csproj", "{38660137-107E-43D2-AD6A-F03B7F0DB48A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedFinances.Core", "AutomatedFinances.Core\AutomatedFinances.Core.csproj", "{63BD5324-C23C-4102-9E9E-D4B93416FC56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedFinances.Core", "..\AutomatedFinances.Core\AutomatedFinances.Core.csproj", "{63BD5324-C23C-4102-9E9E-D4B93416FC56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
