@@ -11,30 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/AutomatedFinances.Core.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContextFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Migrations/20220528030928_Initial.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Migrations/20220528030928_Initial.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Migrations/IridiumDbContextModelSnapshot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.Core/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/AutomatedFinances.BusinessCore.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/AutomatedFinances.BusinessCore.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Business.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Entities/Business.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Cost.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Entities/Cost.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Expenditure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Entities/Expenditure.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/Note.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Entities/Note.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Entities/PaymentMethod.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Entities/PaymentMethod.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Enumerations/Category.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Enumerations/Category.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Enumerations/CurrencyCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Enumerations/CurrencyCode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/Enumerations/PaymentType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/Enumerations/PaymentType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutomatedFinances.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AutomatedFinances.sln" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global.json" beforeDir="false" afterPath="$PROJECT_DIR$/AutomatedFinances.Core/global.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +37,12 @@
     <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/appsettings.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/global.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContext.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IAutomedFinancesDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContextFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
@@ -180,7 +160,7 @@
       <workItem from="1638588972703" duration="1470000" />
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
-      <workItem from="1653707303235" duration="998000" />
+      <workItem from="1653707303235" duration="1309000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -203,7 +183,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653704450476</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Workspace updates">
+      <created>1653708500451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708500451</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created new Core project&#10;* targets NET 6;&#10;* EF Core introduced in core project (for now);&#10;* adds Initial Migration + db sync;&#10;* entities moved from old project (bizcore);&#10;*">
+      <created>1653708592560</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708592560</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Solution updates">
+      <created>1653708613652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708613652</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,9 +232,13 @@
     <MESSAGE value="migrations project upgraded to NET 6 and packages for ef core + tools installed" />
     <MESSAGE value="packages installed and dropped packages.config in favour of newer csproj style" />
     <MESSAGE value="drop dead file" />
-    <option name="LAST_COMMIT_MESSAGE" value="drop dead file" />
+    <MESSAGE value="Workspace updates" />
+    <MESSAGE value="Created new Core project&#10;* targets NET 6;&#10;* EF Core introduced in core project (for now);&#10;* adds Initial Migration + db sync;&#10;* entities moved from old project (bizcore);&#10;*" />
+    <MESSAGE value="Solution updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solution updates" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
