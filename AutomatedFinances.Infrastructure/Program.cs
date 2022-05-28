@@ -5,19 +5,17 @@ using System.Threading.Tasks;
 
 namespace AutomatedFinances.Infrastructure
 {
-    internal class Program
+    internal static class Program
     {
         private static async Task Main(string[] args) {
-            Console.WriteLine("AutoFac Setup running...");
+            Console.WriteLine("AutoFac Setup running");
 
             var host = CreateConsoleHost(args);
 
-            Console.WriteLine("Starting the console app...");
+            Console.WriteLine("Starting the console app");
             await host.RunConsoleAsync();
 
-            // end of lifetime
-            Console.WriteLine("Shutting down the console app...");
-            // container.Dispose();
+            Console.WriteLine("Shutting down the console app");
         }
 
         private static IHostBuilder CreateConsoleHost(string[] args) {
