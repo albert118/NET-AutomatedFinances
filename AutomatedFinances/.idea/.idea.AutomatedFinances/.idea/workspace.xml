@@ -11,7 +11,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/DatabaseSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/EntityFrameworkRegistrationExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/BusinessConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/CostConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/ExpenditureConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/NoteConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/PaymentMethodConfig.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/ExpenditureReadDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/ExpenditureWriteDbContext.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +40,12 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Startup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -153,7 +162,7 @@
       <workItem from="1638588972703" duration="1470000" />
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
-      <workItem from="1653707303235" duration="5811000" />
+      <workItem from="1653707303235" duration="6140000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -246,7 +255,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653715283014</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Updated Nuget in Application">
+      <created>1653715355105</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1653715355105</updated>
+    </task>
+    <task id="LOCAL-00015" summary="NuGet updates on old monolith and drop ref to BizCore">
+      <created>1653715453909</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1653715453909</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Infrastructure drop references">
+      <created>1653715514906</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1653715514906</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +315,10 @@
     <MESSAGE value="touchups" />
     <MESSAGE value="move a bunch of stuff around" />
     <MESSAGE value="drop old interfaces" />
-    <option name="LAST_COMMIT_MESSAGE" value="drop old interfaces" />
+    <MESSAGE value="Updated Nuget in Application" />
+    <MESSAGE value="NuGet updates on old monolith and drop ref to BizCore" />
+    <MESSAGE value="Infrastructure drop references" />
+    <option name="LAST_COMMIT_MESSAGE" value="Infrastructure drop references" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
