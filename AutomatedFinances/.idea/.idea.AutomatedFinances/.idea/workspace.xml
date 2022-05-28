@@ -10,7 +10,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="" />
+    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IIridiumReadDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IIridiumWriteDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/IridiumDb/IridiumDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/IridiumDb/IridiumReadDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/IridiumDb/IridiumWriteDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AsyncDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AsyncDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,14 +39,12 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/alber/git/NET-AutomatedFinances/AutomatedFinances.Infrastructure/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IIridiumReadDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -63,7 +72,7 @@
     <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected=".NET Project.AutomatedFinances.Migrations">
+  <component name="RunManager" selected=".NET Project.AutomatedFinances.Infrastructure">
     <configuration name="AutomatedFinances.Infrastructure" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -153,6 +162,7 @@
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
       <workItem from="1653707303235" duration="6677000" />
+      <workItem from="1653716231211" duration="2872000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -294,7 +304,28 @@
       <option name="project" value="LOCAL" />
       <updated>1653716196797</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Fix usings (wouldn't detect unit restarted)&#10;* drop serverSettings, newer appsettings will replace this;">
+      <created>1653716285043</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1653716285043</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Fix Core project (now it loads)">
+      <created>1653717353345</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1653717353345</updated>
+    </task>
+    <task id="LOCAL-00023" summary="drop comment">
+      <created>1653717366727</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1653717366727</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +371,10 @@
     <MESSAGE value="Updated Infrastructure to NET 6&#10;* installed packages for migration and EF Core work;&#10;* updated most existing packages;" />
     <MESSAGE value="Upgraded remaining packags;" />
     <MESSAGE value="Simplify Program.cs (drops comments)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplify Program.cs (drops comments)" />
+    <MESSAGE value="Fix usings (wouldn't detect unit restarted)&#10;* drop serverSettings, newer appsettings will replace this;" />
+    <MESSAGE value="Fix Core project (now it loads)" />
+    <MESSAGE value="drop comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="drop comment" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
