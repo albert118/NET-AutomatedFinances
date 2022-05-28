@@ -3,11 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\AutomatedFinances.BusinessCore\AutomatedFinances.BusinessCore.csproj" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <Folder Include="Interfaces" />
   </ItemGroup>

@@ -10,7 +10,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="" />
+    <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Application/AutomatedFinances.Application.csproj" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +36,6 @@
     <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IAutomedFinancesDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
@@ -152,7 +153,7 @@
       <workItem from="1638588972703" duration="1470000" />
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
-      <workItem from="1653707303235" duration="5462000" />
+      <workItem from="1653707303235" duration="5811000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -238,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653714524894</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="drop old interfaces">
+      <created>1653715283014</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1653715283014</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +284,8 @@
     <MESSAGE value="EF Core Options added for migrations / core hybrid project" />
     <MESSAGE value="touchups" />
     <MESSAGE value="move a bunch of stuff around" />
-    <option name="LAST_COMMIT_MESSAGE" value="move a bunch of stuff around" />
+    <MESSAGE value="drop old interfaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="drop old interfaces" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
