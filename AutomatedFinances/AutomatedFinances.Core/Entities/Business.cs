@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AutomatedFinances.BusinessCore.Entities
+namespace AutomatedFinances.Core.Entities
 {
     public class Business
     {

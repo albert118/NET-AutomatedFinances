@@ -11,8 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AutomatedFinances.sln.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AutomatedFinances/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/AutomatedFinances.BusinessCore.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.BusinessCore/AutomatedFinances.BusinessCore.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/AutomatedFinances.Migrations.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +33,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Startup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/appsettings.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/global.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/36/MigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Application/Interfaces/IAutomedFinancesDbContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../AutomatedFinances.Migrations/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AutomatedFinances.Core/IridiumDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/549e56392c8649b5851188bc5951df6519e00/19/IMigrationRunner.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="21QweTBwAfptwMfntjTNy9kXyzr" />
@@ -43,6 +54,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="sqlserver" />
     <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994462" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -53,7 +67,8 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="database.main" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.AutomatedFinances.Migrations">
@@ -143,12 +158,59 @@
       <workItem from="1637893676708" duration="738000" />
       <workItem from="1638063972515" duration="18000" />
       <workItem from="1638588972703" duration="1470000" />
+      <workItem from="1653703980812" duration="947000" />
+      <workItem from="1653704946308" duration="1952000" />
+      <workItem from="1653707303235" duration="1309000" />
     </task>
+    <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
+      <created>1653643670977</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1653643670977</updated>
+    </task>
+    <task id="LOCAL-00002" summary="packages installed and dropped packages.config in favour of newer csproj style">
+      <created>1653644190291</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1653644190291</updated>
+    </task>
+    <task id="LOCAL-00003" summary="drop dead file">
+      <created>1653704450476</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1653704450476</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Workspace updates">
+      <created>1653708500451</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708500451</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Created new Core project&#10;* targets NET 6;&#10;* EF Core introduced in core project (for now);&#10;* adds Initial Migration + db sync;&#10;* entities moved from old project (bizcore);&#10;*">
+      <created>1653708592560</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708592560</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Solution updates">
+      <created>1653708613652</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653708613652</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
@@ -164,7 +226,19 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Remove old code" />
+    <MESSAGE value="migrations project upgraded to NET 6 and packages for ef core + tools installed" />
+    <MESSAGE value="packages installed and dropped packages.config in favour of newer csproj style" />
+    <MESSAGE value="drop dead file" />
+    <MESSAGE value="Workspace updates" />
+    <MESSAGE value="Created new Core project&#10;* targets NET 6;&#10;* EF Core introduced in core project (for now);&#10;* adds Initial Migration + db sync;&#10;* entities moved from old project (bizcore);&#10;*" />
+    <MESSAGE value="Solution updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solution updates" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

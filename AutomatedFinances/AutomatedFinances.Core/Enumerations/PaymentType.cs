@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AutomatedFinances.BusinessCore.Enumerations
+﻿namespace AutomatedFinances.Core.Enumerations
 {
     public enum PaymentType
     {

@@ -1,8 +1,8 @@
-﻿using AutomatedFinances.BusinessCore.Enumerations;
+﻿using AutomatedFinances.Core.Enumerations;
 using System;
 using System.Collections.Generic;
 
-namespace AutomatedFinances.BusinessCore.Entities
+namespace AutomatedFinances.Core.Entities
 {
     public class Cost
     {
