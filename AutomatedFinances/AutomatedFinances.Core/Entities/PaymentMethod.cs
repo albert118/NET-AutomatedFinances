@@ -1,6 +1,6 @@
-﻿using AutomatedFinances.BusinessCore.Enumerations;
+﻿using AutomatedFinances.Core.Enumerations;
 
-namespace AutomatedFinances.BusinessCore.Entities
+namespace AutomatedFinances.Core.Entities
 {
     public class PaymentMethod
     {
