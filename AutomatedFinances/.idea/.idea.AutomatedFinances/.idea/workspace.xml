@@ -11,16 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc15ead-e563-4504-b88d-7e0db9edab1c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/AutomedFinancesDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/DatabaseSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/EntityFrameworkRegistrationExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/BusinessConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/CostConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/ExpenditureConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/NoteConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/EntityConfiguration/PaymentMethodConfig.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/ExpenditureReadDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/Data/ExpendituresDb/ExpenditureWriteDbContext.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AutomatedFinances.Infrastructure/AutomatedFinances.Infrastructure.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +153,7 @@
       <workItem from="1638588972703" duration="1470000" />
       <workItem from="1653703980812" duration="947000" />
       <workItem from="1653704946308" duration="1952000" />
-      <workItem from="1653707303235" duration="6140000" />
+      <workItem from="1653707303235" duration="6444000" />
     </task>
     <task id="LOCAL-00001" summary="migrations project upgraded to NET 6 and packages for ef core + tools installed">
       <created>1653643670977</created>
@@ -276,7 +267,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653715514906</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Drop old content from infrastructure">
+      <created>1653715809567</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1653715809567</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,7 +316,8 @@
     <MESSAGE value="Updated Nuget in Application" />
     <MESSAGE value="NuGet updates on old monolith and drop ref to BizCore" />
     <MESSAGE value="Infrastructure drop references" />
-    <option name="LAST_COMMIT_MESSAGE" value="Infrastructure drop references" />
+    <MESSAGE value="Drop old content from infrastructure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Drop old content from infrastructure" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
