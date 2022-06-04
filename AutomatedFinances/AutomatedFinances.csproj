@@ -46,6 +46,9 @@
     <_ContentIncludedByDefault Remove="Core\obj\Core.csproj.nuget.dgspec.json" />
     <_ContentIncludedByDefault Remove="Core\obj\project.assets.json" />
     <_ContentIncludedByDefault Remove="Core\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\Migrations.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\project.packagespec.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
