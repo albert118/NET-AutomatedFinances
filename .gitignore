@@ -3,7 +3,6 @@ Lib/
 libs/
 Scripts/
 
-
 # misc
 .DS_Store
 .env.local
