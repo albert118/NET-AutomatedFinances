@@ -1,86 +1,65 @@
 ﻿using Autofac;
-using Autofac.Extensions.DependencyInjection;
 using AutomatedFinances.Application.Interfaces;
-using AutomatedFinances.Infrastructure.Data;
-using Microsoft.Extensions.Hosting;
-using System;
+using AutomatedFinances.Infrastructure.Data.TradingTransactionsDb;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Threading.Tasks;
 
-namespace AutomatedFinances.Infrastructure
+namespace AutomatedFinances.Infrastructure;
+
+internal static class Program
 {
-    internal class Program
+    private const string AppSettingsFilePath = "appsettings.json";
+
+    private static async Task Main()
     {
-        const string ServiceName = "automatedfinances";
-        
-        private static readonly ServerSettings ServerSettings = ConfigureServerSettings();
+        var container = BuildContainer();
 
-        private static async Task Main(string[] args) {
-            
+        using var scope = container.BeginLifetimeScope();
+        var t = scope.Resolve<ThisControllerThing>();
+        t.DoSomeDatabaseStuff();
+    }
 
-            // start a new container with the server settings configuration.
-            Console.WriteLine("AutoFac Setup running...");
-            var container = SetupAutofacContainer(ServerSettings);
-            container.BeginLifetimeScope();
-            
-            var host = CreateConsoleHost(args);
-            
-            Console.WriteLine("Starting the console app...");
-            await host.RunConsoleAsync();
+    private static IContainer BuildContainer()
+    {
+        var builder = new ContainerBuilder();
 
-            // end of lifetime
-            Console.WriteLine("Shutting down the console app...");
-            container.Dispose();
-        }
+        builder.RegisterType<TradingTransactionWriteDbContext>()
+            .WithParameter("options", GetWriteDbContextOptions())
+            .UsingConstructor(typeof(DbContextOptions<TradingTransactionWriteDbContext>))
+            .As<ITradingTransactionWriteDbContext>()
+            .InstancePerLifetimeScope();
 
-        private static IHostBuilder CreateConsoleHost(string[] args) 
-        {
-            var hostBuilder = Host.CreateDefaultBuilder(args)
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-#if DEBUG
-                .UseEnvironment("development");
-#else
-                .UseEnvironment("production");
-#endif
-            return hostBuilder;
-        }
+        builder.RegisterType<ThisControllerThing>().AsSelf();
 
-        private static IContainer SetupAutofacContainer(ServerSettings serverSettings)
-        {
-            var builder = new ContainerBuilder();
+        return builder.Build();
+    }
 
-            builder
-                .RegisterInstance(serverSettings)
-                .AsSelf()
-                .SingleInstance();
+    private static DbContextOptions<TradingTransactionWriteDbContext> GetWriteDbContextOptions()
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(AppSettingsFilePath)
+            .Build();
 
-            RegisterAndConfigureDatabase(builder, serverSettings);
+        var builder = new DbContextOptionsBuilder<TradingTransactionWriteDbContext>()
+            .UseSqlServer(configuration.GetConnectionString("IridiumDbConnection"));
 
-            return builder.Build();
-        }
+        return builder.Options;
+    }
+}
 
-        private static void RegisterAndConfigureDatabase(
-            ContainerBuilder containerBuilder, 
-            ServerSettings serverSettings)
-        {
-            containerBuilder.AddEntityFramework();
+public class ThisControllerThing
+{
+    private readonly ITradingTransactionWriteDbContext _transactionWriteDbContext;
 
-            containerBuilder
-                .RegisterInstance(serverSettings.ToDataBaseSettings())
-                .AsSelf()
-                .SingleInstance();
-            
-            containerBuilder
-                .RegisterType<AutomedFinancesDbContext>()
-                .As<IAutomedFinancesDbContext>()
-                .InstancePerLifetimeScope();
-        }
+    public ThisControllerThing(ITradingTransactionWriteDbContext transactionWriteDbContext)
+    {
+        _transactionWriteDbContext = transactionWriteDbContext;
+    }
 
-        private static ServerSettings ConfigureServerSettings() =>
-            new() {
-                IridiumServerPath = "192.168.133",
-                AutomatedFinancesDbName = "AutomatedFinancesDb",
-                AutomatedFinancesDbPassword = "p9kNCTHi@91a",
-                AutomatedFinancesDbUser = "sa"
-            };
+    public void DoSomeDatabaseStuff()
+    {
     }
 }

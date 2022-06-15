@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.10" />
   </ItemGroup>
 
@@ -35,28 +34,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="requirements.txt"/>
+    <None Remove="requirements.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CommonLibary\CommonLibrary.csproj"/>
-    <ProjectReference Include="..\EmploymentLibrary\EmploymentLibrary.csproj"/>
+    <ProjectReference Include="..\CommonLibary\CommonLibrary.csproj" />
+    <ProjectReference Include="..\EmploymentLibrary\EmploymentLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Core\obj\Core.csproj.nuget.dgspec.json"/>
-    <_ContentIncludedByDefault Remove="Core\obj\project.assets.json"/>
-    <_ContentIncludedByDefault Remove="Core\obj\project.packagespec.json"/>
+    <_ContentIncludedByDefault Remove="Core\obj\Core.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Core\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\Migrations.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Migrations\obj\project.packagespec.json" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode"/>
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
     </Exec>
-    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE."/>
-    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..."/>
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install"/>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>
 
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">

@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 
 namespace AutomatedFinances.Infrastructure
 {
-    internal abstract class AsyncDbContext : DbContext
+    public abstract class AsyncDbContext : DbContext
     {
-        protected AsyncDbContext(DbContextOptions options) : base(options) { }
+        protected AsyncDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public override int SaveChanges(bool _) => SaveChanges();
 
-        public override int SaveChanges() => throw new NotSupportedException("Async is preffered over sync calls.");
+        public override int SaveChanges() => throw new NotSupportedException("Async is preferred over sync calls");
 
         public override Task<int> SaveChangesAsync(CancellationToken ct = default) => SaveChangesAsync(true, ct);
 
@@ -19,12 +21,11 @@ namespace AutomatedFinances.Infrastructure
         {
             if (ct == default)
             {
-                throw new InvalidOperationException("A real cancellation token is need to call SaveChangesAsync() "
-                    + "so that uneeded or cancelled operations can be terminated mid-save.");
+                throw new InvalidOperationException(
+                    $"A cancellation token is required when using {nameof(AsyncDbContext)} async methods to allow operation termination mid-process");
             }
 
             return await base.SaveChangesAsync(acceptAllChangesOnSuccess, ct);
-
         }
     }
 }

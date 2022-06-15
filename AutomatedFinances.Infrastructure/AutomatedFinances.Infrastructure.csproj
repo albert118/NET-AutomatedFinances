@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	  <LangVersion>9</LangVersion>
+	  <LangVersion>latest</LangVersion>
 	  <OutputType>Exe</OutputType>
 	  <Nullable>enable</Nullable>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <StartupObject>AutomatedFinances.Infrastructure.Program</StartupObject>
   </PropertyGroup>
 
@@ -13,22 +13,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="6.2.0" />
-    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+    <PackageReference Include="Autofac" Version="6.4.0"/>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj" />
-    <ProjectReference Include="..\AutomatedFinances.BusinessCore\AutomatedFinances.BusinessCore.csproj" />
+    <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj"/>
+    <ProjectReference Include="..\AutomatedFinances.Core\AutomatedFinances.Core.csproj"/>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
