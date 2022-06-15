@@ -3,7 +3,6 @@ Lib/
 libs/
 Scripts/
 
-
 # misc
 .DS_Store
 .env.local
@@ -371,19 +370,10 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Rider / IntelliJ Files
-
+/.idea/*
 /shelf/
-/workspace.xml
-
-# Rider ignored files
-/contentModel.xml
-/projectSettingsUpdater.xml
-/modules.xml
-/.idea.AutomatedFinances.iml
+*/dataSources/
+*/dataSources.local.xml
 
 # Rider Editor-based HTTP Client requests
 /httpRequests/
-
-# Rider Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
