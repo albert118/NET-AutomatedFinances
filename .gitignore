@@ -373,7 +373,7 @@ FodyWeavers.xsd
 # Rider / IntelliJ Files
 
 /shelf/
-*workspace.xml
+workspace.xml
 
 # Rider ignored files
 /contentModel.xml
