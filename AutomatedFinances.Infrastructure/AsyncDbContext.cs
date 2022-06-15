@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace AutomatedFinances.Infrastructure
 {
-    internal abstract class AsyncDbContext : DbContext
+    public abstract class AsyncDbContext : DbContext
     {
-        protected AsyncDbContext(DbContextOptions options) : base(options) { }
+        protected AsyncDbContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public override int SaveChanges(bool _) => SaveChanges();
 
@@ -15,11 +17,13 @@ namespace AutomatedFinances.Infrastructure
 
         public override Task<int> SaveChangesAsync(CancellationToken ct = default) => SaveChangesAsync(true, ct);
 
-        public override async Task<int>
-            SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken ct = default) {
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken ct = default)
+        {
             if (ct == default)
+            {
                 throw new InvalidOperationException(
                     $"A cancellation token is required when using {nameof(AsyncDbContext)} async methods to allow operation termination mid-process");
+            }
 
             return await base.SaveChangesAsync(acceptAllChangesOnSuccess, ct);
         }

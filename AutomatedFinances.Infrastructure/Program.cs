@@ -1,39 +1,65 @@
-﻿using Autofac.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
+﻿using Autofac;
+using AutomatedFinances.Application.Interfaces;
+using AutomatedFinances.Infrastructure.Data.TradingTransactionsDb;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 using System.Threading.Tasks;
 
-namespace AutomatedFinances.Infrastructure
+namespace AutomatedFinances.Infrastructure;
+
+internal static class Program
 {
-    internal static class Program
+    private const string AppSettingsFilePath = "appsettings.json";
+
+    private static async Task Main()
     {
-        private static async Task Main(string[] args) {
-            Console.WriteLine("Setting up");
+        var container = BuildContainer();
 
-            var host = CreateConsoleHost(args);
+        using var scope = container.BeginLifetimeScope();
+        var t = scope.Resolve<ThisControllerThing>();
+        t.DoSomeDatabaseStuff();
+    }
 
-            Console.WriteLine("Starting the console app");
-            
-            await host.RunConsoleAsync();
+    private static IContainer BuildContainer()
+    {
+        var builder = new ContainerBuilder();
 
-            Console.WriteLine("Shutting down the console app");
-        }
+        builder.RegisterType<TradingTransactionWriteDbContext>()
+            .WithParameter("options", GetWriteDbContextOptions())
+            .UsingConstructor(typeof(DbContextOptions<TradingTransactionWriteDbContext>))
+            .As<ITradingTransactionWriteDbContext>()
+            .InstancePerLifetimeScope();
 
-        private static IHostBuilder CreateConsoleHost(string[] args) {
-            var builder = Host.CreateDefaultBuilder(args)
-            
-            #if DEBUG
-                    .UseEnvironment("development")
-            #else
-                .UseEnvironment("production")
-            #endif
-                .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                .ConfigureServices(services => {
-                    services.AddDbContext<IridiumDbContext>();
-                });
+        builder.RegisterType<ThisControllerThing>().AsSelf();
 
-            return builder;
-        }
+        return builder.Build();
+    }
+
+    private static DbContextOptions<TradingTransactionWriteDbContext> GetWriteDbContextOptions()
+    {
+        var configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile(AppSettingsFilePath)
+            .Build();
+
+        var builder = new DbContextOptionsBuilder<TradingTransactionWriteDbContext>()
+            .UseSqlServer(configuration.GetConnectionString("IridiumDbConnection"));
+
+        return builder.Options;
+    }
+}
+
+public class ThisControllerThing
+{
+    private readonly ITradingTransactionWriteDbContext _transactionWriteDbContext;
+
+    public ThisControllerThing(ITradingTransactionWriteDbContext transactionWriteDbContext)
+    {
+        _transactionWriteDbContext = transactionWriteDbContext;
+    }
+
+    public void DoSomeDatabaseStuff()
+    {
     }
 }
