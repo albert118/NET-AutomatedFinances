@@ -1,98 +1,83 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using AutomatedFinances.Application.Interfaces;
-using AutomatedFinances.Infrastructure.Data.TradingTransactionsDb;
-using Microsoft.EntityFrameworkCore;
 
 namespace AppHost;
 
 internal static class Program
 {
-    private const string AppSettingsFilePath = "appsettings.json";
-
     private static void Main()
     {
-        var builder = WebApplication.CreateBuilder();
+        var appConfiguration = GetAppConfiguration();
 
-        builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+        var webApplicationBuilder = WebApplication.CreateBuilder();
 
-        builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+        webApplicationBuilder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+        webApplicationBuilder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
         {
             containerBuilder
-                .RegisterType<TradingTransactionReadDbContext>()
-                .WithParameter("options", GetDbContextOptions<TradingTransactionReadDbContext>())
-                .UsingConstructor(typeof(DbContextOptions<TradingTransactionReadDbContext>))
-                .As<ITradingTransactionReadDbContext>()
-                .InstancePerLifetimeScope();
-
-            containerBuilder
-                .RegisterType<TradingTransactionWriteDbContext>()
-                .WithParameter("options", GetDbContextOptions<TradingTransactionWriteDbContext>())
-                .UsingConstructor(typeof(DbContextOptions<TradingTransactionWriteDbContext>))
-                .As<ITradingTransactionWriteDbContext>()
-                .InstancePerLifetimeScope();
+                .AddDatabaseSettings(appConfiguration)
+                .AddEfDbContexts();
         });
 
-        // Add services to the container.
-        builder.Services.AddControllers();
+        ConfigureControllers(webApplicationBuilder);
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        var webApplication = webApplicationBuilder.Build();
 
-        var app = builder.Build();
+        ConfigureWebApp(webApplication);
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthorization();
-
-        app.MapControllers();
-
-        app.Run();
+        webApplication.Run();
     }
 
-    // private static ContainerBuilder AddDbContextOptions<TContext>(this ContainerBuilder containerBuilder)
-    //     where TContext : DbContext
-    // {
-    //     // TODO: add this is as a DI model and inject it in the service provider (SP) delegate
-    //     var configuration = new ConfigurationBuilder()
-    //         .SetBasePath(Directory.GetCurrentDirectory())
-    //         .AddJsonFile(AppSettingsFilePath)
-    //         .Build();
-    //
-    //     containerBuilder.Register(sp =>
-    //     {
-    //         var loggerFactory = sp.Resolve<ILoggerFactory>();
-    //
-    //         return new DbContextOptionsBuilder<TContext>()
-    //             .UseLoggerFactory(loggerFactory)
-    //             .UseSqlServer(configuration.GetConnectionString("IridiumDbConnection"))
-    //             .EnableDetailedErrors()
-    //             .EnableSensitiveDataLogging();
-    //     }).AsSelf().SingleInstance();
-    //
-    //     return containerBuilder;
-    // }
-
-    private static DbContextOptions GetDbContextOptions<TContext>() where TContext : DbContext
+    private static void ConfigureControllers(WebApplicationBuilder webApplicationBuilder)
     {
-        var configuration = new ConfigurationBuilder()
+        // Add services to the container.
+        webApplicationBuilder.Services.AddControllers();
+
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        webApplicationBuilder.Services
+            .AddEndpointsApiExplorer()
+            .AddSwaggerGen();
+    }
+
+    private static void ConfigureWebApp(WebApplication webApplication)
+    {
+        // Configure the HTTP request pipeline.
+        if (webApplication.Environment.IsDevelopment())
+        {
+            webApplication
+                .UseSwagger()
+                .UseSwaggerUI();
+        }
+
+        webApplication
+            .UseHttpsRedirection()
+            .UseAuthorization();
+
+        webApplication.MapControllers();
+    }
+
+    private static ContainerBuilder AddEfDbContexts(this ContainerBuilder containerBuilder)
+    {
+        return containerBuilder.AddTradingTransactionContext();
+    }
+
+    private static ContainerBuilder AddDatabaseSettings(this ContainerBuilder containerBuilder,
+        IConfiguration appConfiguration)
+    {
+        var databaseSettings = new DatabaseSettings(appConfiguration.GetConnectionString("IridiumDbConnection"));
+        containerBuilder.RegisterInstance(databaseSettings).AsSelf().SingleInstance();
+
+        return containerBuilder;
+    }
+
+    private static IConfigurationRoot GetAppConfiguration()
+    {
+        const string appSettingsFilePath = "appsettings.json";
+
+        return new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile(AppSettingsFilePath)
+            .AddJsonFile(appSettingsFilePath)
             .Build();
-
-        var builder = new DbContextOptionsBuilder<TContext>()
-            .UseSqlServer(configuration.GetConnectionString("IridiumDbConnection"))
-            .EnableDetailedErrors()
-            .EnableSensitiveDataLogging();
-
-        return builder.Options;
     }
 }
