@@ -1,50 +1,48 @@
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Threading.Tasks;
+using System.Reflection;
 
+namespace Api;
 
-namespace Api
+public static class Program
 {
-    public static class Program
+    public static async Task Main() {
+        var containerBuilder = new ContainerBuilder();
+        var hostBuilder = WebApplication.CreateBuilder();
+
+        hostBuilder
+            .SetUpAppHost();
+
+        containerBuilder.SetUpContainer();
+
+        var webHost = hostBuilder.Build();
+
+        webHost.MapControllers();
+        webHost.UseHttpsRedirection().UseAuthorization();
+
+        await webHost.RunAsync();
+    }
+
+    private static WebApplicationBuilder SetUpAppHost(this WebApplicationBuilder hostBuilder) {
+        hostBuilder.Services
+            .AddEndpointsApiExplorer()
+            .AddAutofac()
+            .AddControllers();
+
+        return hostBuilder;
+    }
+
+    private static WebApplicationBuilder AddAutofacToWebApp(this WebApplicationBuilder hostBuilder)
     {
-        public static async Task Main(string[] args) {
-            var app = CreateAppHost(args);
-            
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment()) {
-                ConfigureWebAppForDevelopment(app);
-            }
+        hostBuilder.
 
-            app.UseHttpsRedirection()
-               .UseAuthorization();
-                
-            app.MapControllers();
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
-            Console.WriteLine("Starting the API");
-            
-            await app.RunAsync();
+        return hostBuilder;
+    }
 
-            Console.WriteLine("Shutting down the API");
-        }
-
-        private static WebApplication CreateAppHost(string[] args) {
-            var builder = WebApplication.CreateBuilder(args);
-            builder.Services
-                // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-                .AddSwaggerGen()
-                .AddEndpointsApiExplorer()
-                .AddAutofac()
-                .AddControllers();
-
-            return builder.Build();
-        }
-
-        private static void ConfigureWebAppForDevelopment(IApplicationBuilder app) {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-        }
+    private static void SetUpContainer(this ContainerBuilder containerBuilder)
+    {
+        containerBuilder.Regi
     }
 }
