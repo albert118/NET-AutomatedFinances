@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutomatedFinances.Application;
 
 namespace AppHost;
 
@@ -17,7 +18,8 @@ internal static class Program
         {
             containerBuilder
                 .AddDatabaseSettings(appConfiguration)
-                .AddEfDbContexts();
+                .AddEfDbContexts()
+                .AddApplicationServices();
         });
 
         ConfigureControllers(webApplicationBuilder);
