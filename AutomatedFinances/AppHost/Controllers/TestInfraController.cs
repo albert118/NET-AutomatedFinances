@@ -1,4 +1,4 @@
-using AutomatedFinances.Application.Interfaces;
+using AutomatedFinances.Application.TradingManager;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppHost.Controllers;
@@ -7,24 +7,36 @@ namespace AppHost.Controllers;
 [Route("[controller]")]
 public class TestInfraController : ControllerBase
 {
-    private readonly ITradingTransactionReadDbContext _context;
+    private readonly ITradingCommandService _commandService;
     private readonly ILogger<TestInfraController> _logger;
+    private readonly ITradingQueryService _queryService;
 
-    public TestInfraController(ILogger<TestInfraController> logger, ITradingTransactionReadDbContext context)
+    public TestInfraController(
+        ILogger<TestInfraController> logger,
+        ITradingQueryService queryService,
+        ITradingCommandService commandService)
     {
         _logger = logger;
-        _context = context;
+        _queryService = queryService;
+        _commandService = commandService;
     }
 
-    [HttpGet(Name = "GetInfraTestResponse")]
+    [HttpGet(Name = "GET InfraTest")]
     public IEnumerable<InfraTestResponse> Get()
     {
-        _logger.LogInformation("Hit TestInfraController");
-
-        var data = _context.GenericTransactions.ToList();
-
-        return data.Select(d => new InfraTestResponse(d.TrackingId));
+        _logger.LogInformation("Hit GET TestInfra Controller");
+        return _queryService.GetAllTrades().Select(t => new InfraTestResponse(t.Pk, t.atDateTime));
     }
 
-    public sealed record InfraTestResponse(Guid Pk);
+    [HttpPost(Name = "POST Add Entity InfraTest")]
+    public async Task<bool> Post()
+    {
+        _logger.LogInformation("Hit POST Add Entity InfraTest Controller");
+
+        var ctSource = new CancellationTokenSource();
+
+        return await _commandService.AddTrade("me", "you", DateTime.UtcNow, ctSource.Token);
+    }
+
+    public sealed record InfraTestResponse(Guid Pk, DateTime atDateTime);
 }
