@@ -29,7 +29,6 @@ internal static class EfRegistrationExtensions
     private static ContainerBuilder AddDbContextOptions<TContext>(this ContainerBuilder containerBuilder)
         where TContext : DbContext
     {
-        // TODO: add this is as a DI model and inject it in the service provider (SP) delegate
         containerBuilder.Register(sp =>
             {
                 var loggerFactory = sp.Resolve<ILoggerFactory>();
