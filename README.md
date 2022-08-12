@@ -15,16 +15,15 @@ This project required setting up an EF class library that handles migrations. I 
 * Java 8+ required for tabula.
  * TODO: Find an alt. for tabula that doesn't require Java
 
-
 # Startup Guide
 
 ## Frontend
 
-To setup the frontend project, run these as typical
+The frontend project comprises of a few elements. Namely, the UI react SPA project "Icarus UI". This runs the frontend and watches the various 
+required files. To setup and run the frontend app, change into the `frontend/icarusUI` directory and then run these as typical,
 
 ```
 npm install
-
 npm test
 ```
 
@@ -34,3 +33,4 @@ Then run the (React) frontend project,
 npm start
 ```
 
+See the *Icarus UI* README for more information.
