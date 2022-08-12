@@ -1,12 +1,12 @@
 import React from 'react';
 
-import NavigationMenu from '../../components/NavigationMenu/NavigationMenu';
+import Navigation from './components/Navigation';
 import CardLayout from './components/CardLayout/CardLayout';
 
 export default function HomeView() {
     return (
-        <div>
-            <NavigationMenu />
+        <div className="p-home-view">
+            <Navigation />
             <CardLayout />
         </div>
     );
