@@ -375,5 +375,13 @@ FodyWeavers.xsd
 */dataSources/
 */dataSources.local.xml
 
+# Rider config file
+_config.yml
+
 # Rider Editor-based HTTP Client requests
 /httpRequests/
+
+# C# and .NET build files
+
+obj/*
+bin/*
