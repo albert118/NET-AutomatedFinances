@@ -14,3 +14,23 @@ This project required setting up an EF class library that handles migrations. I 
 
 * Java 8+ required for tabula.
  * TODO: Find an alt. for tabula that doesn't require Java
+
+
+# Startup Guide
+
+## Frontend
+
+To setup the frontend project, run these as typical
+
+```
+npm install
+
+npm test
+```
+
+Then run the (React) frontend project,
+
+```
+npm start
+```
+
