@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationMenu from './NavigationMenu';
+import NavigationMenu from './NavigationMenu/NavigationMenu';
 
 export default function Layout(props) {
     return (
