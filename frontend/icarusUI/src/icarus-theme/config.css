@@ -1,0 +1,6 @@
+/**
+ * Do not define any rules in this file! Only import config rulesets
+ */
+
+@import "config/colors.css";
+@import "config/layers.css";

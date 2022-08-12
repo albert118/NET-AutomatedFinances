@@ -1,0 +1,24 @@
+.common-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 5px;
+    padding: 12px;
+    border: 0.5px solid var(--cultured);
+    
+    min-width: 100px;
+    border-radius: 7px;
+
+    background-color: var(--cultured);
+    color: black;
+    
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.common-btn:hover {
+    color: white;
+    border: 0.5px solid white;
+    background-color: black;
+}

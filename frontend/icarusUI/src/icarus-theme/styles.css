@@ -1,0 +1,8 @@
+/** 
+ * The master styles file. This follows a config + local architecture,
+ * as presented by Elad Shechter
+ * See: https://elad.medium.com/css-architecture-folders-files-structure-f92b40c78d0b
+ */
+
+@import "config.css";
+@import "local.css";

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import CommonButton from '../CommonButton/CommonButton';
+
 export default function NavigationMenu() {
     const menuBarWrapperStyle = {
         backgroundColor: 'black',
@@ -35,17 +37,11 @@ export default function NavigationMenu() {
     };
 
     const buttonWrapperStyle = {
-        padding: '15px',
-        width: '100%'
-    };
-
-    const buttonStyle = {
-        fontFamily: 'sans-serif',
-        borderRadius: '4px',
-        padding: '6px',
+        display: 'flex',
         width: '100%',
-        backgroundColor: 'white',
-        border: '1px solid blueviolet'
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2px',
     };
 
     return (
@@ -59,13 +55,13 @@ export default function NavigationMenu() {
 
                 <div style={buttonGroupWrapperStyle}>
                     <div style={buttonWrapperStyle}>
-                        <button type="button" style={buttonStyle}>Demo Button to Nowhere #1</button>
+                        <CommonButton buttonText="Button to Nowhere #1" />
                     </div>
                     <div style={buttonWrapperStyle}>
-                        <button type="button" style={buttonStyle}>Bang!</button>
+                        <CommonButton buttonText="Bang!" />
                     </div>
                     <div style={buttonWrapperStyle}>
-                        <button type="button" style={buttonStyle}>Do not click more ... don't do it</button>
+                        <CommonButton buttonText="Do not click more ... don't do it" />
                     </div>
                 </div>
             </div>
