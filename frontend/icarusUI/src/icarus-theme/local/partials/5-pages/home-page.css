@@ -1,3 +1,18 @@
 
 @import "2-components/card-layout.css";
+
 @import "2-components/card.css";
+
+@import "2-components/navigation-container.css";
+
+@import "2-components/brand-hero.css";
+
+@import "2-components/frequent-pages-bar.css";
+
+
+.p-home-view {
+    /* stop gap to help viz while building */
+    height: 100vh;
+
+    background-color: black;
+}
