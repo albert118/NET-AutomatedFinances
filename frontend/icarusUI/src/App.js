@@ -1,14 +1,11 @@
 import HomeContainer from './pages/Home/HomeContainer';
 
-import './App.css';
-import './dove-theme/styles.css';
+import './icarus-theme/styles.css'; 
 
-function App() {
+export default function App() {
   return (
-    <div>
+    <div className="icarus-monochromatic-blue-theme icarus-square-contrast-theme">
       <HomeContainer />
     </div>
   );
 }
-
-export default App;

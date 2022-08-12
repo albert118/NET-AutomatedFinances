@@ -1,0 +1,10 @@
+/**
+ * Partials are a way to split "components" into more manageable design regions
+ * Note the numbering, it must be from most generic to specific! Do not re-order these imports.
+ */
+
+@import "partials/1-elements.css";
+/* @import "partials/2-components/*.css"; */
+/* @import "partials/3-sequences/*.css"; */
+/* @import "partials/4-entities/*.css"; */
+/* @import "partials/5-pages/*.css"; */

@@ -1,0 +1,6 @@
+/**
+ * Do not define any rules in this file! Only import layer rulesets
+ */
+
+ @import "local/resets.css";
+ @import "local/partials.css";
