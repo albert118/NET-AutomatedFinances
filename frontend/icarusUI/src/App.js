@@ -1,4 +1,4 @@
-import HomeContainer from './pages/Home/HomeContainer';
+import HomeContainer from './pages/Home';
 
 import './icarus-theme/styles.css'; 
 

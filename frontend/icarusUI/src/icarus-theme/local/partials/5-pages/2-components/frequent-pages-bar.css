@@ -1,0 +1,10 @@
+.frequent-pages-bar {
+    display: grid;
+    width: 50%;
+    
+    grid-template-columns: 1fr 0.2fr 1fr;
+    gap: 10px;
+
+    align-items: center;
+    justify-items: center;
+}
