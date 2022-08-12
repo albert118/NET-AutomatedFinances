@@ -1,0 +1,43 @@
+/* Coolors Exported Palette - https://coolors.co/f8f9fa-67e1f4-5f85ab-4a79a8-114c55-001f3d-212529 */
+.icarus-monochromatic-blue-theme {
+    /* CSS HEX */
+    --cultured: #f8f9faff;
+    --sky-blue-crayola: #67e1f4ff;
+    --glaucous: #5f85abff;
+    --blue-yonder: #4a79a8ff;
+    --midnight-green-eagle-green: #114c55ff;
+    --oxford-blue: #001f3dff;
+    --charleston-green: #212529ff;
+
+    /* CSS HSL */
+    --cultured: hsla(210, 17%, 98%, 1);
+    --sky-blue-crayola: hsla(188, 87%, 68%, 1);
+    --glaucous: hsla(210, 31%, 52%, 1);
+    --blue-yonder: hsla(210, 39%, 47%, 1);
+    --midnight-green-eagle-green: hsla(188, 67%, 20%, 1);
+    --oxford-blue: hsla(210, 100%, 12%, 1);
+    --charleston-green: hsla(210, 11%, 15%, 1);
+}
+
+/* Coolors Exported Palette - https://coolors.co/f03536-ba0000-04d137-8acf46-2748ab-183ca8-f9bf13-d7ae33 */
+.icarus-square-contrast-theme {
+	/* CSS HEX */
+	--imperial-red: #f03536ff;
+	--international-orange-engineering: #ba0000ff;
+	--lime-green: #04d137ff;
+	--yellow-green: #8acf46ff;
+	--cobalt-blue: #2748abff;
+	--egyptian-blue: #183ca8ff;
+	--orange-yellow: #f9bf13ff;
+	--gold-metallic: #d7ae33ff;
+
+	/* CSS HSL */
+	--imperial-red: hsla(360, 86%, 57%, 1);
+	--international-orange-engineering: hsla(0, 100%, 36%, 1);
+	--lime-green: hsla(135, 96%, 42%, 1);
+	--yellow-green: hsla(90, 59%, 54%, 1);
+	--cobalt-blue: hsla(225, 63%, 41%, 1);
+	--egyptian-blue: hsla(225, 75%, 38%, 1);
+	--orange-yellow: hsla(45, 95%, 53%, 1);
+	--gold-metallic: hsla(45, 67%, 52%, 1);
+}
