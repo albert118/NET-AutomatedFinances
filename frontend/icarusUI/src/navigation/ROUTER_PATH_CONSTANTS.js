@@ -4,3 +4,4 @@
  */
 
 export const ROOT = '/';
+export const TRANSACTION_RECORDS = '/transactions';
