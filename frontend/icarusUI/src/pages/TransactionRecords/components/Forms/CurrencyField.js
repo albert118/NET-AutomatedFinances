@@ -1,11 +1,13 @@
 import React from 'react';
 
 
-export default class TextField extends React.Component {
+export default class CurrencyField extends React.Component {
+    // TODO: set a maximum date of today (future dating transactions should not be valid)
     constructor(props) {
         super(props);
 
         this.props = props;
+
         this.state = { value: '' };
 
         this.uuid = Math.random();
@@ -22,19 +24,19 @@ export default class TextField extends React.Component {
         return(
             <div className={`form-entry-card ${ this.props.className }`}>
                 <label
-                    htmlFor={`text-input-${this.uuid}`}
+                    htmlFor={`monetary-input-${this.uuid}`}
                     className="form-label--font form-value--label"
-                    id={`text-label-${this.uuid}`}
+                    id={`monetary-label-${this.uuid}`}
                     name={this.props.labelName}
                     value={this.props.labelName}
                 >
                     { this.inputLabelText }
                 </label>
                 <input 
-                    className="form-value--font no-padding form-input form-small-text-entry-value"
+                    className="form-value--font no-padding form-input form-small-monetary-entry-value"
                     id={`text-input-${this.uuid}`}
-                    type="text"
-                    name="text-input"
+                    type="currency"
+                    name="monetary-input"
                     title={this.props.inputLabelText}
                     value={this.state.value}
                     placeholder={this.props.prompt}

@@ -15,7 +15,7 @@
 .form-field-grid {
     display: grid;
     grid-template-columns: [leftcol-start] 1fr [leftcol-end rightcol-start] 1fr;
-    gap: 0 2.5em;
+    column-gap: 2.5em;
 }
 
 .left-field {

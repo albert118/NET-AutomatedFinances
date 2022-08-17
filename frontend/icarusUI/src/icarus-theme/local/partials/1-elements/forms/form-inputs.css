@@ -1,0 +1,57 @@
+/************************************
+ * input
+ */
+input.form-input {
+    /* pretty inputs that minimally obstruct their backing but are still contrasting and visible */
+    background-color: inherit;
+    border: none;
+}
+
+input.form-input:focus-visible {
+    /* drop some of the default interaction */
+    outline: none;
+    border: none;
+}
+
+
+/************************************
+ * generic text
+ */
+
+input.form-input,
+input[type=text].form-small-text-entry-value  {
+    color: lightgray;
+}
+
+input.form-input:focus-visible,
+input[type=text].form-small-text-entry-value:focus-visible {
+    color: white;
+}
+
+/************************************
+ * dates
+ */
+
+input.form-input,
+input[type=date].form-small-date-entry-value  {
+    color: lightgray;
+}
+
+input.form-input:focus-visible,
+input[type=date].form-small-date-entry-value:focus-visible {
+    color: white;
+}
+
+/************************************
+ * currency
+ */
+
+input.form-input,
+input[type=currency].form-small-monetary-entry-value  {
+    color: lightgray;
+}
+
+input.form-input:focus-visible
+input[type=currency].form-small-monetary-entry-value:focus-visible {
+    color: white;
+}
