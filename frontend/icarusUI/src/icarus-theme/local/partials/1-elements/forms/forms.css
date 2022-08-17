@@ -1,0 +1,45 @@
+
+/* grids */
+@import "form-grids.css";
+
+/* fonts */
+@import "form-fonts.css";
+
+/* labels */
+@import "form-labels.css";
+
+/* utils */
+@import "form-utils.css";
+
+/* data entry */
+
+.form-entry {
+    display: flex;
+    flex-direction: column;
+
+    margin: .8em 0;
+    padding: 6px 6px 6px 20px;
+    border: .1em solid transparent;
+
+    border-radius: .8em;
+    background-color: #272733;
+}
+
+.form-entry:hover,
+.form-entry:focus-within {
+    border: .1em solid var(--sky-blue-crayola);
+    box-shadow: .1px .1px 8px var(--midnight-green-eagle-green);
+}
+
+input[type=text].form-small-text-entry-value  {
+    /* pretty inputs that minimally obstruct their backing but are still contrasting and visible */
+    background-color: inherit;
+    border: none;
+    color: lightgray;
+}
+
+input[type=text].form-small-text-entry-value:focus-visible {
+    outline: none;
+    border: none;
+    color: white;
+}

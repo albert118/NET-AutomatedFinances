@@ -1,7 +1,17 @@
-
 .p-transaction-records-view {
     /* stop gap to help viz while building */
     height: 100vh;
 
-    background-color: black;
+    background-color: #0c0c0d;
+    color: var(--cultured);
+}
+
+.transaction-record-grid {
+    padding: 40px;
+    
+    display: grid;
+    grid-template-columns: 
+        [viewport-start] minmax(1em, 1fr)
+        [container-start] minmax(0, 50em) [container-end] 
+        minmax(1em, 1fr) [viewport-end];
 }

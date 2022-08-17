@@ -2,3 +2,6 @@
 /*Buttons*/
 
 @import "1-elements/common-btn.css";
+
+/* Forms */
+@import "1-elements/forms/forms.css"

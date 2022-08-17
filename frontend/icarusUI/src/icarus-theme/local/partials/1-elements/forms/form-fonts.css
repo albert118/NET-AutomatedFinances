@@ -1,0 +1,14 @@
+.form-label--font {
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.form-value--font {
+    height: 2em;
+    font-weight: 300;
+}
+
+h2.form-title--font {
+    padding-bottom: 1em;
+    font-size: 2em; 
+}
