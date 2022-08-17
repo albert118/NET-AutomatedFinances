@@ -1,0 +1,28 @@
+.brand-hero-container {
+    display: flex;
+    height: 50px;
+    
+    padding: 10px 20px;
+    margin: 6px;
+    border: 0.1px solid white;
+    
+    align-items: center;
+    justify-content: baseline;
+}
+
+.brand-hero-title {
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+}
+
+.brand-hero-icon {
+    width: 15px;
+    height: 15px;
+
+    border: none;
+    border-radius: 20px;
+    margin: 11px 10px 10px -5px;
+
+    background-color: var(--imperial-red);
+}
