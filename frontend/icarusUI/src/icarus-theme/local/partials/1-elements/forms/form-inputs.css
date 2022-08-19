@@ -1,13 +1,13 @@
 /************************************
  * input
  */
-input.form-input {
+.form-input {
     /* pretty inputs that minimally obstruct their backing but are still contrasting and visible */
     background-color: inherit;
     border: none;
 }
 
-input.form-input:focus-visible {
+.form-input:focus-visible {
     /* drop some of the default interaction */
     outline: none;
     border: none;
@@ -28,17 +28,28 @@ input[type=text].form-small-text-entry-value:focus-visible {
     color: white;
 }
 
+textarea.form-input,
+textarea.form-long-text-value  {
+    color: lightgray;
+    resize: vertical;
+}
+
+textarea.form-input:focus-visible,
+textarea.form-long-text-value:focus-visible {
+    color: white;
+}
+
 /************************************
  * dates
  */
 
 input.form-input,
-input[type=date].form-small-date-entry-value  {
+input[type=date].form-date-value  {
     color: lightgray;
 }
 
 input.form-input:focus-visible,
-input[type=date].form-small-date-entry-value:focus-visible {
+input[type=date].form-date-value:focus-visible {
     color: white;
 }
 

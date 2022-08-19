@@ -8,6 +8,11 @@
     font-weight: 300;
 }
 
+.form-long-value--font {
+    height: unset;
+    font-weight: 300;
+}
+
 h2.form-title--font {
     padding-bottom: 1em;
     font-size: 2em; 
