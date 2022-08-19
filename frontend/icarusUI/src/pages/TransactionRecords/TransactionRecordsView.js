@@ -1,11 +1,9 @@
 import React from 'react';
-import AddTransactionRecord from './components/Forms/AddTransactionRecord';
-import PageHeader from './components/PageHeader';
+import AddTransactionRecord from './components/forms/AddTransactionRecord';
 
 export default function TransactionRecordsView() {
     return (
         <div className="p-transaction-records-view">
-            <PageHeader />
             <AddTransactionRecord />
         </div>
     );
