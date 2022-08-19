@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CommonButton from '../../../../components/CommonButton';
+import CommonButton from '../../../../components';
 
 export default function FrequentPagesNavBar() {
     return (

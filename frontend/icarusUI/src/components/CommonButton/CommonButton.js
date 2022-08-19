@@ -1,9 +1,13 @@
 import React from 'react';
 
-export default function CommonButton(props) {
+const CommonButton = props => {
+    const { className, buttonText } = props;
+
     return (
-        <button type="button" className={`common-btn ${props.className}`}>
-            { props.buttonText }
+        <button type="button" className={`common-btn ${className}`}>
+            { buttonText }
         </button>
     );
 };
+
+export default CommonButton;
