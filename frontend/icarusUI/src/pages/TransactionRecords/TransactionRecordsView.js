@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTransactionRecord from './components/forms/AddTransactionRecord';
+import AddTransactionRecord from './forms/AddTransactionRecord';
 
 export default function TransactionRecordsView() {
     return (
