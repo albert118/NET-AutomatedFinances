@@ -60,7 +60,6 @@ internal static class Program
     private static ContainerBuilder AddEfDbContexts(this ContainerBuilder containerBuilder)
     {
         return containerBuilder
-            .AddTradingTransactionContext()
             .AddTransactionContext();
     }
 

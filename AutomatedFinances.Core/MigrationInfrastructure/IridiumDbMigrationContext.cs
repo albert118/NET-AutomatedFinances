@@ -9,12 +9,10 @@ public class IridiumDbMigrationContext : DbContext
     {
     }
 
-    public DbSet<GenericTransaction> GenericTransactions => Set<GenericTransaction>();
     public DbSet<FinancialTransactionRecord> FinancialTransactionRecords => Set<FinancialTransactionRecord>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        new GenericTransactionConfig().Configure(builder.Entity<GenericTransaction>());
         new FinancialTransactionRecordConfig().Configure(builder.Entity<FinancialTransactionRecord>());
     }
 }

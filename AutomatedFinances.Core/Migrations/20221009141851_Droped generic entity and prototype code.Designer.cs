@@ -3,6 +3,7 @@ using System;
 using AutomatedFinances.Core.MigrationInfrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AutomatedFinances.Core.Migrations
 {
     [DbContext(typeof(IridiumDbMigrationContext))]
-    partial class IridiumDbMigrationContextModelSnapshot : ModelSnapshot
+    [Migration("20221009141851_Droped generic entity and prototype code")]
+    partial class Dropedgenericentityandprototypecode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
