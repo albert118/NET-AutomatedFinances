@@ -1,13 +1,14 @@
 import React from 'react';
 
-import CommonButton from '../../../../components';
+import CommonButton from 'components';
+import AppRoutes from 'navigation/AppRoutes';
 
 export default function FrequentPagesNavBar() {
     return (
         <div className="frequent-pages-bar">
-            <CommonButton buttonText="Button to Nowhere #1" />
-            <CommonButton buttonText="Bang!" />
-            <CommonButton buttonText="Do not click more ... don't do it" />
+            <CommonButton buttonText="Home" link={AppRoutes.root} />
+            <CommonButton buttonText="All Transactions" link={AppRoutes.allTransactionRecords} />
+            <CommonButton buttonText="Add Transaction" link={AppRoutes.addTransactionRecord}/>
         </div>
     );
 };

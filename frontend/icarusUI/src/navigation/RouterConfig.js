@@ -1,19 +1,36 @@
 import React from 'react';
 import { Route, Routes  } from 'react-router-dom';
 
-import { ROOT, TRANSACTION_RECORDS } from './ROUTER_PATH_CONSTANTS';
+import AppRoutes from './AppRoutes';
 
-import HomeContainer from '../pages/Home/HomeContainer';
-import TransactionRecordsContainer from '../pages/TransactionRecords/TransactionRecordsContainer';
+import HomeContainer from 'pages/Home/HomeContainer';
+import AddTransactionRecord from 'pages/AddTransactionRecord';
+import AllTransactionRecords from 'pages/AllTransactionRecords';
 
-export default function RouterConfig() {
+
+const RouterConfig = () => {
     return (
         <Routes>
-            <Route path={ROOT} element={<HomeContainer />} />
-            <Route path={TRANSACTION_RECORDS} element={<TransactionRecordsContainer />} />
+            <Route 
+                path={AppRoutes.root} 
+                element={<HomeContainer />}
+            />
+            <Route 
+                path={AppRoutes.addTransactionRecord} 
+                element={<AddTransactionRecord />}
+            />
+            <Route 
+                path={AppRoutes.allTransactionRecords}
+                element={<AllTransactionRecords />}
+            />
 
-            {/* Redirect to Home until a 404 page is added */}
-            <Route path="*" element={<HomeContainer />}/>
+            {/* TODO: Redirect to Home until a 404 page is added */}
+            <Route 
+                path="*" 
+                element={<HomeContainer />}
+            />
         </Routes >
     );
-}
+};
+
+export default RouterConfig;
