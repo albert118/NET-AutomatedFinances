@@ -1,10 +1,10 @@
 
-/*Buttons*/
+/* buttons */
 
-@import "1-elements/common-btn.css";
+@import "1-elements/buttons/buttons.css";
 
-/* Forms */
+/* forms */
 @import "1-elements/forms/forms.css";
 
-/* Lists */
-@import "1-elements/lists/list-grids.css";
+/* lists */
+@import "1-elements/lists/lists.css";

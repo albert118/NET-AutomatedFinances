@@ -1,5 +1,6 @@
 import React from 'react';
-import CardLayout from './components/CardLayout/CardLayout';
+
+import CardLayout from 'components/CardLayout';
 
 
 export default function HomeView() {

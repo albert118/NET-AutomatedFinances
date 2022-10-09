@@ -6,3 +6,18 @@
 /* scrollbars */
 
 @import "2-components/scrollbar-vertical.css";
+
+/* cards */
+
+@import "2-components/card.css";
+@import "2-components/card-layout.css";
+
+/* branding */
+
+@import "2-components/brand-hero.css";
+
+
+/* navigation */
+
+@import "2-components/navigation-container.css";
+@import "2-components/frequent-pages-bar.css";

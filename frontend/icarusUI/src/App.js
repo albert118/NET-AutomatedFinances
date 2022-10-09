@@ -1,9 +1,9 @@
-import './icarus-theme/styles.css'; 
+import 'icarus-theme/styles.css'; 
 
-import RouterConfig from './navigation/RouterConfig';
+import RouterConfig from 'navigation/RouterConfig';
 import { BrowserRouter } from 'react-router-dom';
 
-import Navigation from 'pages/Home/components/Navigation';
+import Navigation from 'navigation';
 
 
 export default function App() {
