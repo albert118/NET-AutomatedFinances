@@ -1,6 +1,5 @@
 using Autofac;
 using AutomatedFinances.Application.Interfaces;
-using AutomatedFinances.Infrastructure.Data.TradingTransactionsDb;
 using AutomatedFinances.Infrastructure.Data.TransactionRecordsDb;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,25 +7,6 @@ namespace AppHost;
 
 internal static class EfRegistrationExtensions
 {
-    public static ContainerBuilder AddTradingTransactionContext(this ContainerBuilder containerBuilder)
-    {
-        containerBuilder
-            .AddDbContextOptions<TradingTransactionReadDbContext>()
-            .AddDbContextOptions<TradingTransactionWriteDbContext>();
-
-        containerBuilder
-            .RegisterType<TradingTransactionReadDbContext>()
-            .As<ITradingTransactionReadDbContext>()
-            .InstancePerLifetimeScope();
-
-        containerBuilder
-            .RegisterType<TradingTransactionWriteDbContext>()
-            .As<ITradingTransactionWriteDbContext>()
-            .InstancePerLifetimeScope();
-
-        return containerBuilder;
-    }
-
     public static ContainerBuilder AddTransactionContext(this ContainerBuilder containerBuilder)
     {
         containerBuilder
