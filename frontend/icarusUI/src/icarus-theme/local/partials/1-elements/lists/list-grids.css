@@ -1,0 +1,17 @@
+.list-content-grid--full {
+    grid-column: viewport;
+    display: inherit;
+    grid-template-columns: inherit;
+}
+
+.list-content-grid--full > * {
+    grid-column: container;
+}
+
+.list-content-grid--contained {
+    grid-column: container;
+}
+
+.full-width {
+    grid-column: leftcol / span rightcol;
+}

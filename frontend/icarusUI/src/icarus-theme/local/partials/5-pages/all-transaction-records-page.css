@@ -1,0 +1,39 @@
+.p-all-transaction-records-view {
+    /* stop gap to help viz while building */
+    height: 100vh;
+    
+    background-color: #0c0c0d;
+    color: var(--cultured);
+}
+
+.all-transaction-record-grid {
+    padding: 40px;
+    
+    display: grid;
+    grid-template-columns: 
+        [viewport-start] minmax(1em, 1fr)
+        [container-start] minmax(0, 50em) [container-end] 
+        minmax(1em, 1fr) [viewport-end];
+}
+
+/************************************
+ * list display card, should be a component for the page
+ */
+
+ .transaction-record-card {
+    display: flex;
+    flex-direction: column;
+
+    margin: .8em 0;
+    padding: 6px 6px 6px 20px;
+    border: .1em solid transparent;
+
+    border-radius: .8em;
+    background-color: #272733;
+}
+
+.transaction-record-card:hover,
+.transaction-record-card:focus-within {
+    border: .1em solid var(--sky-blue-crayola);
+    box-shadow: .1px .1px 8px var(--midnight-green-eagle-green);
+}

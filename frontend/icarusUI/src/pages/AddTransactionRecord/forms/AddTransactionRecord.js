@@ -10,6 +10,7 @@ import {
     KeyGenerator
 } from 'forms';
 
+import server from 'Server';
 
 const AddTransactionRecord = () => {
     const [formData, setFormData] = useState({
@@ -22,10 +23,18 @@ const AddTransactionRecord = () => {
 
     const keyGenerator = KeyGenerator();
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
+
+        await server.post(`/TransactionRecord`, JSON.stringify({
+            Description: `${formData.txName} ${formData.txDescription}`,
+            TotalCost: formData.txTotalCost,
+            Date: formData.txDate,
+            Reference: formData.txReference,
+        }));
+
         console.log(`Submit with ${JSON.stringify(formData)}`);
-    }
+    };
 
     const handleFormDataChange = event => {
         setFormData(prevState => ({
