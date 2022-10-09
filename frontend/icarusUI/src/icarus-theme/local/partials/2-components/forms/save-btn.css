@@ -1,0 +1,11 @@
+.save-btn {
+    transition: border .25s ease, color .25s ease, background-color .25s ease;
+    background-color: var(--cultured);
+    color: black;
+}
+
+.save-btn:hover {
+    color: white;
+    background-color: var(--yellow-green);
+    border: 0.5px solid white;
+}

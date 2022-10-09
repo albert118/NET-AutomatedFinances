@@ -1,0 +1,44 @@
+/* vertical scrollbar for forms */
+.scrollbar-vertical {
+    --scrollbar-background: #333;
+    --scrollbar-foreground: #555;
+    --scrollbar-hover-foreground: var(--sky-blue-crayola);
+    
+    -ms-overflow-style: auto;
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+    scrollbar-width: thin;
+}
+
+.scrollbar-vertical::-webkit-scrollbar {
+    width: 5px;
+    resize: none;
+}
+
+.scrollbar-vertical::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    background: var(--scrollbar-background);
+}
+
+.scrollbar-vertical::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--scrollbar-foreground);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+.scrollbar-vertical::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover-foreground);
+}
+
+/* remove the bottom corner + resizer for a cleaner aesthetic*/
+
+.scrollbar-vertical::-webkit-resizer {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}
+
+.scrollbar-vertical::-webkit-scrollbar-corner {
+    visibility: hidden;
+    display: none;
+    opacity: 0;
+}

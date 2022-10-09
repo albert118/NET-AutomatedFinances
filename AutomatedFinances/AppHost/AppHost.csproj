@@ -7,15 +7,19 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Autofac" Version="6.4.0"/>
-        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="Autofac" Version="6.4.0" />
+        <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.9" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\AutomatedFinances.Core\AutomatedFinances.Core.csproj"/>
-        <ProjectReference Include="..\..\AutomatedFinances.Infrastructure\AutomatedFinances.Infrastructure.csproj"/>
-        <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj"/>
+        <ProjectReference Include="..\..\AutomatedFinances.Core\AutomatedFinances.Core.csproj" />
+        <ProjectReference Include="..\..\AutomatedFinances.Infrastructure\AutomatedFinances.Infrastructure.csproj" />
+        <ProjectReference Include="..\AutomatedFinances.Application\AutomatedFinances.Application.csproj" />
     </ItemGroup>
 
 </Project>

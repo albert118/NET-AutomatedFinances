@@ -1,0 +1,31 @@
+.form-content-grid--full {
+    grid-column: viewport;
+    display: inherit;
+    grid-template-columns: inherit;
+}
+
+.form-content-grid--full > * {
+    grid-column: container;
+}
+
+.form-content-grid--contained {
+    grid-column: container;
+}
+
+.form-field-grid {
+    display: grid;
+    grid-template-columns: [leftcol-start] 1fr [leftcol-end rightcol-start] 1fr;
+    column-gap: 2.5em;
+}
+
+.left-field {
+    grid-column: leftcol;
+}
+
+.right-field {
+    grid-column: rightcol;
+}
+
+.full-width {
+    grid-column: leftcol / span rightcol;
+}

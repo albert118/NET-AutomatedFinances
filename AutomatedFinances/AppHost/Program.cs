@@ -42,11 +42,9 @@ internal static class Program
             .AddSwaggerGen();
     }
 
-    private static void ConfigureWebApp(WebApplication webApplication)
-    {
+    private static void ConfigureWebApp(WebApplication webApplication) {
         // Configure the HTTP request pipeline.
-        if (webApplication.Environment.IsDevelopment())
-        {
+        if (webApplication.Environment.IsDevelopment()) {
             webApplication
                 .UseSwagger()
                 .UseSwaggerUI();
@@ -61,13 +59,23 @@ internal static class Program
 
     private static ContainerBuilder AddEfDbContexts(this ContainerBuilder containerBuilder)
     {
-        return containerBuilder.AddTradingTransactionContext();
+        return containerBuilder
+            .AddTradingTransactionContext()
+            .AddTransactionContext();
     }
 
     private static ContainerBuilder AddDatabaseSettings(this ContainerBuilder containerBuilder,
-        IConfiguration appConfiguration)
-    {
-        var databaseSettings = new DatabaseSettings(appConfiguration.GetConnectionString("IridiumDbConnection"));
+        IConfiguration appConfiguration) {
+
+        var databaseSettings = new DatabaseSettings(
+            appConfiguration.GetConnectionString("IridiumDbConnection"),
+            new (new Version(
+                int.Parse(appConfiguration.GetSection("ConnectionStrings:ServerVersionMajor").Value),
+                int.Parse(appConfiguration.GetSection("ConnectionStrings:ServerVersionMinor").Value),
+                int.Parse(appConfiguration.GetSection("ConnectionStrings:ServerVersionBuild").Value)
+            ))
+        );
+
         containerBuilder.RegisterInstance(databaseSettings).AsSelf().SingleInstance();
 
         return containerBuilder;

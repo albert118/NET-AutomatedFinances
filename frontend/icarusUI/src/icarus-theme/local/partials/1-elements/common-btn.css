@@ -1,3 +1,15 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px;
+    border: 0.5px solid var(--cultured);
+    
+    min-width: 100px;
+    border-radius: 7px;
+}
+
 .common-btn {
     display: flex;
     align-items: center;
@@ -8,6 +20,12 @@
     
     min-width: 100px;
     border-radius: 7px;
+}
+
+.btn,
+.common-btn {
+    --btn-hover-border: var(--sky-blue-crayola);
+    --btn-hover-background: black;
 
     background-color: var(--cultured);
     color: black;
@@ -18,6 +36,6 @@
 
 .common-btn:hover {
     color: white;
-    border: 0.5px solid white;
-    background-color: black;
+    border: 0.5px solid var(--btn-hover-border);
+    background-color: var(--btn-hover-background);
 }

@@ -19,8 +19,18 @@ public class IridiumDbMigrationContextFactory : IDesignTimeDbContextFactory<Irid
             .AddJsonFile(AppSettingsFilePath)
             .Build();
 
+        var connectionString = configuration.GetConnectionString("IridiumDbConnection");
+
+        Console.WriteLine(Directory.GetCurrentDirectory().ToString());
+
+        var majorVersion = int.Parse(configuration.GetSection("ConnectionStrings:ServerVersionMajor").Value);
+        var minorVersion = int.Parse(configuration.GetSection("ConnectionStrings:ServerVersionMinor").Value);
+        var buildVersion = int.Parse(configuration.GetSection("ConnectionStrings:ServerVersionBuild").Value);
+
+        var serverVersion = new MySqlServerVersion(new Version(majorVersion, minorVersion, buildVersion));
+
         var dbContextBuilder = new DbContextOptionsBuilder<IridiumDbMigrationContext>()
-            .UseSqlServer(configuration.GetConnectionString("IridiumDbConnection"));
+            .UseMySql(connectionString, serverVersion);
 
         return new(dbContextBuilder.Options);
     }
